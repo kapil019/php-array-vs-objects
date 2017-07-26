@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "336770874139",
+    "project_id": "printing-cfada"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336770874139:android:7fd90f8daa066761",
+        "android_client_info": {
+          "package_name": "com.printing.kk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336770874139-h3u94agqnl0ob21qgvt52g774945h5la.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.printing.kk",
+            "certificate_hash": "5B2D87E24E90C57C7736214317588DCE1EB30454"
+          }
+        },
+        {
+          "client_id": "336770874139-ll9mlc3c4itr2nrg8knr5crahf9m3bmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa3WsTWRM8oyW9a3PefgXJAQuB0KHabXY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

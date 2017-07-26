@@ -1,0 +1,49 @@
+<ion-view view-title="My Schedule">
+  <ion-content ng-class="{expanded:$scope.isExpanded}">
+    <div class="list">
+      <input type="radio" name="day" value="sun" style="display: none;">
+      <div class="list gem-list">
+        <div class="tabs tabs-top tab-day-selection" style="top:0px">
+          <a class="tab-item" href="#app/book-now/{{day}}" ng-repeat="day in days">
+            <div class="tab-item active" ng-if="day == activeDay">
+              <div class="schedule-day">{{day}}</div>
+              <div class="schedule-date"> 21 NOV </div>
+            </div>
+            <div class="tab-item" ng-if="day != activeDay">
+              <div class="schedule-day">{{day}}</div>
+              <div class="schedule-date"> 21 OCT</div>
+            </div>
+          </a>
+        </div>
+        <div style="height: 50px;"></div>
+        <h4 class="content padding double-padding-x" style="padding-top: 2px!important;
+            padding-bottom: 0px!important;
+            color: #43AD92;">Select Slot</h4>
+        <form ng-submit="editProfile()" class="gem-form-schedule-edit">
+          <li class="item item-toggle item-icon-left" style="pointer-events: all; margin-top: 8px;" ng-repeat="(slot_key, slot) in slots">
+            <i class="icon ion-clock schedule-clock-icon"></i>
+            {{slot.title}}
+            <select class="select-style" ng-if="slots[slot_key]['active']">
+              <option>1 Seat</option>
+              <option>2 Seats</option>
+            </select>
+            <span class="select-style" ng-if="!slots[slot_key]['active']" disabled="disabled">
+
+            </span>
+            <label class="toggle toggle-balanced">          
+              <input type="checkbox" checked="checked" ng-if="slot.active" ng-model="slots[slot_key]['active']">
+              <input type="checkbox" ng-if="!slot.active" ng-model="slots[slot_key]['active']" ng-change="selectSlot(slot_key)">
+              <div class="track">
+                <div class="handle"></div>
+              </div>
+            </label>
+          </li>
+          <label class="item">
+            <button class="button button-block button-positive" type="submit" ui-sref="app.booking-success">Confirm Booking</button>
+          </label>
+        </form>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+

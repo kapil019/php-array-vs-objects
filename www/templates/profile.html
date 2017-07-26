@@ -1,0 +1,32 @@
+<ion-view view-title="Profile">
+  <ion-content ng-class="{expanded:$scope.isExpanded}">
+    <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg');">
+      <div class="content">
+        <div class="avatar" style="background-image: url('img/daenerys.jpg');"></div>
+        <h3><a class="light">{{profileData.first_name}} {{profileData.last_name}}</a></h3>
+        <h4>{{profileData.state.name}} {{profileData.city.name}} {{profileData.pincode}}</h4>
+        <button class="button button-icon icon ion-edit"ui-sref="app.editprofile"></button>
+      </div>
+    </div>
+    <div class="list animate-fade-slide-in-right">
+      <a ui-sref="#" class="item">
+        <h2>Name</h2>
+        <p>{{profileData.first_name}} {{profileData.last_name}}</p>
+        
+        <h2>Email</h2>
+        <p>{{profileData.email}}</p>
+        
+        <h2>Phone</h2>
+        <p>{{profileData.phone}}</p>
+      </a>
+      <a ui-sref="#" class="item">
+        <h2>Address</h2>
+        <p>{{profileData.address}} {{profileData.state.name}} {{profileData.city.name}} {{profileData.pincode}}</p>
+      </a>
+      <a ui-sref="#" class="item">
+        <h2>About Me</h2>
+        <p>{{profileData.about_me}}</p>
+      </a>
+    </div>    
+  </ion-content>
+</ion-view>

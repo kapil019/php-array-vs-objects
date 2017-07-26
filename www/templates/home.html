@@ -1,0 +1,14 @@
+<ion-view view-title="Home">
+  <ion-content ng-class="{expanded:isExpanded}" class="has-header gem-ion-content feed">
+    <div class="cate-lv1">
+      <div class="cate-lv1-list item card-item item-background cate-lv1-item" ng-repeat="cate in categoryList" ui-sref="app.feed({ cateId: cate.id })"
+           style="background: url({{cate.image}}) no-repeat; background-size: cover;">
+        <div class="list card item-wrapper">
+          <h2>{{cate.category}}</h2>
+          <p>{{cate.description}}</p>
+          <p style="font-size: 16px;margin-top: 10px;">{{cate.priceCap}}</p>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

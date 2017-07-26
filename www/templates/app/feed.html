@@ -1,0 +1,66 @@
+<ion-view view-title="Search">
+  <ion-content ng-class="{expanded:isExpanded}" class="has-header gem-ion-content feed">
+    <div class="item-input">
+      <input type ="date" placeholder="Select Date" ng-if="search.datefor == null" class="calander-date date-input" ng-model="search.datefor">
+      <input type ="date" ng-if="search.datefor != null" ng-change="updateSearchResult()" class="calander-date" ng-model="search.datefor">
+      <div class='slot-filter calander-date'>
+      <select ng-model="search.schedule" ng-change="updateSearchResult()" class="slot-selection" ng-options="slot.title for slot in baseSlotList track by slot.value">
+        <option value=""> Select Time</option>
+      </select>
+      </div>
+    </div>
+    
+    <ion-list class="item card-item" ng-repeat="result in searchResults">
+      <div class="list card" style=" padding: 0px; margin-left:0px;margin-right: 0px;margin-bottom:10px;margin-top:0px;">
+        <div class="news-media" style="background: url({{result.img}}) no-repeat; height: 150px; background-size: cover;">
+          <div class="popover-text">
+            <div class="media-social-stats col col-100" style="color: #ffffff; margin-left: 15px;">
+              <p style="margin: 0px 5px 0 15px; color:#fff; height:auto;white-space: normal;">
+                {{result.about_me}}
+                {{result.address}}
+                {{result.city}}
+                {{result.state}}
+                {{result.pincode}}
+                ({{result.phone}})
+                {{result.email}}
+              </p>
+            </div>
+            <div class="book-actions">
+            <button class="button button-positive vendor-book-btn" ui-sref="app.details" style="float:right; margin-right: 0px; height: 42px;">
+              Details
+            </button>
+            </div>
+          </div>
+        </div>
+        <div class="news-item" style="margin: 5px;">
+          <div class="news-thumb" style="height: 50px; width:50px;">
+            <img src="img/jon-snow.jpg" alt="" class="img" style="width:100%; heigth:100%">
+          </div>
+          <div class="news-content">
+            <div class="gem-tiny-text news-item-stats">
+              <div class="item tabs tabs-secondary tabs-icon-left">
+                <span style="margin-right: 20px;">{{result.first_name}} {{result.last_name}}</span>
+                <i class="icon ion-clock"></i> &nbsp {{result.VendorDistance}} KM Away
+              </div>
+            </div>
+          </div>         
+        </div>
+      </div>
+    </ion-list>
+    <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    
+  </ion-content>
+  <ion-footer-bar align-title="left" class="bar-block bar-positive" style="background: #43AD92!important;">
+    <div class="footer-buttons">
+      <select ng-model="search.category" ng-change="updateSearchResult()" class="footer-actions" ng-options="category.category for category in categoryList track by category.id">
+        <option value=""> Select Category</option>
+      </select>
+    </div>
+    <div class="footer-buttons">
+      <select ng-model="search.range" ng-change="updateSearchResult()" class="footer-actions" ng-options="distance.title for distance in distanceList track by distance.id">
+        <option value=""> Select Distance</option>
+      </select>
+    </div>
+  </ion-footer-bar>
+</ion-view>
+
