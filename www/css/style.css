@@ -365,10 +365,10 @@ label.item.item-input textarea {margin: 10px 0; border-radius: 5px;}
 input, select, textarea {
   /*border-radius: 0px!important;*/
   /*border-radius: 20px!important;*/
-    /*text-indent: 20px;*/
-    vertical-align: middle;
-    /*padding-left: 20px!important;*/
-    /*font-size: 16px;*/
+  /*text-indent: 20px;*/
+  vertical-align: middle;
+  /*padding-left: 20px!important;*/
+  /*font-size: 16px;*/
 }
 /*.button3 {
     background: #ffffff;
@@ -453,8 +453,8 @@ calendar-container {height:1000px;}
                   bottom: 0;
                   right: 0;
                   margin: 0px;
-    width: 50%;
-    float: left;
+                  width: 50%;
+                  float: left;
 }
 .cate-lv1 .cate-lv1-item {
   display: table;
@@ -726,6 +726,9 @@ calendar-container {height:1000px;}
 }
 .slot-filter {width: 50%;}
 .modal .button-clear {
- margin:0px;
+  margin:0px;
 }
-
+.card-item.item {
+  padding: 10px;
+  padding-bottom: 0px;
+}

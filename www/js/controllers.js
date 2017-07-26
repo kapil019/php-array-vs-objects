@@ -387,31 +387,6 @@ angular.module('starter.controllers', [])
   .controller('FeedCtrl', function ($scope, $stateParams, $timeout, apiManager, $state, $ionicLoading, ionicToast, $localStorage, $rootScope) {
     $scope.user = $localStorage.getUser();
 
-    $scope.bookSeat = function (vendor_id) {
-      if ($scope.user.id) {
-        $ionicLoading.show();
-        var $params = {
-          user_id: $scope.user.id,
-          vendor_id: vendor_id,
-          scheduled: $scope.search.schedule.value,
-          booking_date: $scope.search.datefor.getFullYear() + "-" + ($scope.search.datefor.getMonth() + 1) + "-" + $scope.search.datefor.getDate(),
-          seats_books: 1,
-          phone: $scope.user.phone,
-          device_id: ""
-        };
-        apiManager.createBooking($params).then(function (resp) {
-          //if (!resp.code) {
-          ionicToast.show("Booking created successfully.", 'middle', false, 1500);
-          //} else {
-          //ionicToast.show(resp.body.message[0], 'middle', false, 1500);
-          //}
-          $ionicLoading.hide();
-        });
-      } else {
-        ionicToast.show("Please login to create a booking!", 'middle', false, 1500);
-      }
-    };
-
     /*
      * SEARCH
      */
@@ -445,19 +420,6 @@ angular.module('starter.controllers', [])
             }
           });
         }
-        apiManager.getBaseSlotList().then(function (resp) {
-          if (!resp.code) {
-            $scope.baseSlotList = resp;
-            $scope.search.schedule = $scope.baseSlotList[0];
-            apiManager.getDistanceList().then(function (resp) {
-              if (!resp.code) {
-                $scope.distanceList = resp;
-                $scope.search.range = $scope.distanceList[0];
-                $scope.updateSearchResult();
-              }
-            });
-          }
-        });
       }
     });
 
@@ -484,18 +446,13 @@ angular.module('starter.controllers', [])
     $scope.search = {
       datefor: new Date(),
       category: null,
-      longitude: 2.33,
-      latitude: 4.55,
-//      longitude: null,
-//      latitude: null,
+      longitude: null,
+      latitude: null,
       range: null,
       schedule: null,
       page: 1
     };
 
-    $scope.goToBook = function () {
-      $state.go("app.booking-success");
-    };
   })
 
   .controller('DetailsCtrl', function ($scope, $stateParams, $timeout, $state, apiManager, CONFIG) {
@@ -522,63 +479,6 @@ angular.module('starter.controllers', [])
           $scope.slots[key].active = false;
         } else {
           $scope.slots[key].active = true;
-        }
-      });
-    };
-  })
-
-  .controller('ViewBookingCtrl', function ($scope, $stateParams, $timeout, ionicToast, apiManager) {
-    $scope.bookingId = $stateParams.bookingId;
-    $scope.booking = {};
-    $scope.vendor = {};
-    $scope.cancelReason = {};
-    $scope.selectedReason = null;
-    apiManager.getBookingById($scope.bookingId).then(function (resp) {
-      resp.code = false;  // TODO REMOVE
-      if (!resp.code) {
-        resp.body.data = {// TODO REMOVE
-          id: "1",
-          user_id: "1",
-          vendor_id: "7",
-          scheduled: "12-13",
-          booking_date: "2017-02-11",
-          seats_books: "1",
-          phone: "123456789",
-          address: null,
-          status: 1
-        };
-        $scope.booking = resp.body.data;
-        if ($scope.booking.status) {
-          $scope.booking.status_text = "Active";
-          $scope.booking.status_class = "success";
-        } else {
-          $scope.booking.status_text = "Canceled";
-          $scope.booking.status_class = "warning";
-        }
-        apiManager.getProfile($scope.booking.vendor_id).then(function (resp) {
-          if (!resp.code) {
-            $scope.vendor = resp.body.data;
-            apiManager.getCancelReason('vendor').then(function (resp) {
-              if (!resp.code) {
-                $scope.cancelReason = resp.body.data;
-              }
-            });
-          }
-        });
-      }
-    });
-
-    $scope.cancelBooking = function () {
-      var $params = {
-        booking_id: $scope.booking.id,
-        seat: $scope.booking.seats_books,
-        status: 0 // 0 To cancel booking
-      };
-      apiManager.updateBooking($params).then(function (resp) {
-        if (!resp.code) {
-          ionicToast.show("Booking canceled successfully.", 'middle', false, 1500);
-        } else {
-          ionicToast.show("Some error occured, Please try again!", 'middle', false, 1500);
         }
       });
     };
@@ -612,4 +512,3 @@ angular.module('starter.controllers', [])
       });
     };
   });
-
