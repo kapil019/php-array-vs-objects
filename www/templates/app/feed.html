@@ -1,14 +1,5 @@
 <ion-view view-title="Search">
   <ion-content ng-class="{expanded:isExpanded}" class="has-header gem-ion-content feed">
-    <div class="item-input">
-      <input type ="date" placeholder="Select Date" ng-if="search.datefor == null" class="calander-date date-input" ng-model="search.datefor">
-      <input type ="date" ng-if="search.datefor != null" ng-change="updateSearchResult()" class="calander-date" ng-model="search.datefor">
-      <div class='slot-filter calander-date'>
-      <select ng-model="search.schedule" ng-change="updateSearchResult()" class="slot-selection" ng-options="slot.title for slot in baseSlotList track by slot.value">
-        <option value=""> Select Time</option>
-      </select>
-      </div>
-    </div>
     
     <ion-list class="item card-item" ng-repeat="result in searchResults">
       <div class="list card" style=" padding: 0px; margin-left:0px;margin-right: 0px;margin-bottom:10px;margin-top:0px;">
@@ -48,19 +39,6 @@
       </div>
     </ion-list>
     <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
-    
   </ion-content>
-  <ion-footer-bar align-title="left" class="bar-block bar-positive" style="background: #43AD92!important;">
-    <div class="footer-buttons">
-      <select ng-model="search.category" ng-change="updateSearchResult()" class="footer-actions" ng-options="category.category for category in categoryList track by category.id">
-        <option value=""> Select Category</option>
-      </select>
-    </div>
-    <div class="footer-buttons">
-      <select ng-model="search.range" ng-change="updateSearchResult()" class="footer-actions" ng-options="distance.title for distance in distanceList track by distance.id">
-        <option value=""> Select Distance</option>
-      </select>
-    </div>
-  </ion-footer-bar>
 </ion-view>
 

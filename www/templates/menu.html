@@ -12,9 +12,9 @@
     <ion-nav-view name="menuContent" ng-class="{expanded: isExpanded}" ></ion-nav-view>
   </ion-side-menu-content>
   <ion-side-menu side="right">
-    <ion-header-bar class="dark-bg expanded-" ng-if="isUserLoggedIn">
-      <!--<span class="avatar" style="background: url('img/crown.jpg'); background-size: cover;" ng-if="isUserLoggedIn"></span>-->
+    <ion-header-bar class="dark-bg expanded-">
       <h2 ng-if="isUserLoggedIn"> Welcome {{user.first_name}}</h2>
+      <h2 ng-if="!isUserLoggedIn"> Welcome Guest</h2>
     </ion-header-bar>
     <ion-content class="stable-bg has-expanded-header">
       <ion-list>        
@@ -36,7 +36,6 @@
         <ion-item nav-clear menu-close href="#/app/editprofile"  ng-if="isUserLoggedIn">
           Edit Profile
         </ion-item>
-
       </ion-list>
     </ion-content>
   </ion-side-menu>

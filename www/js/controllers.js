@@ -217,7 +217,7 @@ angular.module('starter.controllers', [])
     });
   })
 
-  .controller('ProfileCtrl', function ($scope, $localStorage, $timeout, ionicMaterialMotion, CONFIG, $ionicLoading, apiManager) {
+  .controller('ProfileCtrl', function ($scope, $localStorage, $timeout, CONFIG, $ionicLoading, apiManager) {
     // Set Motion
     $scope.profileData = {};
     $scope.user = $localStorage.getUser();
@@ -262,7 +262,7 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('EditProfileCtrl', function ($scope, $timeout, ionicMaterialMotion, ionicMaterialInk, ionicToast, apiManager, $log, $ionicLoading, $localStorage, CONFIG) {
+  .controller('EditProfileCtrl', function ($scope, $timeout, ionicToast, apiManager, $log, $ionicLoading, $localStorage, CONFIG) {
     $scope.profileData = {};
     $scope.user = $localStorage.getUser();
 
@@ -380,13 +380,11 @@ angular.module('starter.controllers', [])
    * @param {type} $scope
    * @param {type} $stateParams
    * @param {type} $timeout
-   * @param {type} ionicMaterialMotion
-   * @param {type} ionicMaterialInk
    * @param {type} apiManager
    * @param {type} $state
    * @returns {undefined}
    */
-  .controller('FeedCtrl', function ($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, apiManager, $state, $ionicLoading, ionicToast, $localStorage, $rootScope) {
+  .controller('FeedCtrl', function ($scope, $stateParams, $timeout, apiManager, $state, $ionicLoading, ionicToast, $localStorage, $rootScope) {
     $scope.user = $localStorage.getUser();
 
     $scope.bookSeat = function (vendor_id) {
@@ -500,7 +498,7 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('DetailsCtrl', function ($scope, $stateParams, $timeout, ionicMaterialInk, $state, apiManager, CONFIG) {
+  .controller('DetailsCtrl', function ($scope, $stateParams, $timeout, $state, apiManager, CONFIG) {
     // Activate ink for controller
     $scope.goToBook = function () {
       $state.go("app.book-now");
@@ -586,7 +584,7 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('BookingSuccessCtrl', function ($scope, $stateParams, $timeout, ionicMaterialInk, $ionicActionSheet, $state) {
+  .controller('BookingSuccessCtrl', function ($scope, $timeout, $ionicActionSheet, $state) {
     // Activate ink for controller
   })
 

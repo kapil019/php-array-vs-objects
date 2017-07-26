@@ -1,5 +1,5 @@
 // Ionic Starter App
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.config', 'ionic-toast', 'ionic-material', 'ionMdInput', 'ui.rCalendar'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.config', 'ionic-toast'])
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
