@@ -143,13 +143,13 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
     },
     searchVendors: function ($params) {
       var defer = $q.defer();
-      $http.get(CONFIG.apiUrl + "booking/searchSeats?category_id=" + $params.category.id
-        + "&longitude=" + $params.longitude
-        + "&latitude=" + $params.latitude
-        + "&range=" + $params.range.value
-        + "&schedule=" + $params.schedule.value
+      $http.get(CONFIG.apiUrl + "booking/searchSeats?category_id="
+//        + "&longitude=" + $params.longitude
+//        + "&latitude=" + $params.latitude
+//        + "&range=" + $params.range.value
+//        + "&schedule=" + $params.schedule.value
         + "&page=" + $params.page
-        + "&datefor=" + $params.datefor.getFullYear() + "-" + ($params.datefor.getMonth() + 1) + "-" + $params.datefor.getDate()
+//        + "&datefor=" + $params.datefor.getFullYear() + "-" + ($params.datefor.getMonth() + 1) + "-" + $params.datefor.getDate()
         + "&api_key=" + CONFIG.apiKey, $params).success(function (resp) {
 
         var data = {
@@ -256,7 +256,7 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
             ],
             code: 0
           }
-        }
+        };
 
         defer.resolve(data);
         var data = {
@@ -379,7 +379,7 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
                 id: "7",
                 token: "PIXo7pSh",
                 email: "test2@test.com",
-                img: "../www/img/travel/act1.jpg",
+                image: "../www/img/travel/act1.jpg",
                 password: "9810fdc1f26d399e7575f826c845fcde60424198",
                 first_name: "testhanu",
                 last_name: "hanuLast",
@@ -411,7 +411,7 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
               }, {
                 id: "7",
                 token: "PIXo7pSh",
-                img: "../www/img/travel/act2.jpg",
+                image: "../www/img/travel/act2.jpg",
                 email: "test2@test.com",
                 password: "9810fdc1f26d399e7575f826c845fcde60424198",
                 first_name: "testhanu",
@@ -444,7 +444,7 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
               }, {
                 id: "7",
                 token: "PIXo7pSh",
-                img: "../www/img/travel/act3.jpg",
+                image: "../www/img/travel/act3.jpg",
                 email: "test2@test.com",
                 password: "9810fdc1f26d399e7575f826c845fcde60424198",
                 first_name: "testhanu",

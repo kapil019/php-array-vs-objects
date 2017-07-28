@@ -1,6 +1,6 @@
 <ion-view view-title="Profile">
-  <ion-content ng-class="{expanded:$scope.isExpanded}">
-    <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg');">
+  <ion-content>
+    <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg'); max-height: 200px;">
       <div class="content">
         <div class="avatar" style="background-image: url('img/daenerys.jpg');"></div>
         <h3><a class="light">{{profileData.first_name}} {{profileData.last_name}}</a></h3>
@@ -8,7 +8,7 @@
         <button class="button button-icon icon ion-edit"ui-sref="app.editprofile"></button>
       </div>
     </div>
-    <div class="list animate-fade-slide-in-right">
+    <div class="list animate-fade-slide-in-right-">
       <a ui-sref="#" class="item">
         <h2>Name</h2>
         <p>{{profileData.first_name}} {{profileData.last_name}}</p>

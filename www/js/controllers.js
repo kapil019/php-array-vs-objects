@@ -410,16 +410,13 @@ angular.module('starter.controllers', [])
     $scope.categoryList = [];
     $scope.baseSlotList = [];
     $scope.distanceList = [];
+    $scope.searchResults = [];
     apiManager.getCategoryList().then(function (resp) {
       if (!resp.code) {
         $scope.categoryList = resp.body.data;
-        if ($stateParams.cateId && $stateParams.cateId !== null) {
-          $scope.categoryList.forEach(function (category) {
-            if (category.id === $stateParams.cateId) {
-              $scope.search.category = category;
-            }
-          });
-        }
+        resp.body.data.forEach(function (newItem) {
+          $scope.searchResults.push(newItem);
+        });
       }
     });
 

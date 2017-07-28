@@ -2,14 +2,15 @@
   <ion-content ng-class="{expanded:isExpanded}" class="has-header gem-ion-content feed">
     <ion-list class="item card-item" ng-repeat="result in searchResults">
       <div class="list card" style=" padding: 0px; margin-left:0px;margin-right: 0px;margin-bottom:10px;margin-top:0px;">
-        <div class="news-media" style="background: url({{result.img}}) no-repeat; height: 150px; background-size: cover;">
+        <div class="news-media" style="background: url({{result.image}}) no-repeat; height: 150px; background-size: cover;">
           <div class="popover-text">
             <div class="media-social-stats col col-100" style="color: #ffffff; margin-left: 15px;">
               <p style="margin: 0px 5px 0 15px; color:#fff; height:auto;white-space: normal;">
-                {{result.about_me}}
+                {{result.description}}
                 {{result.address}}
                 {{result.city}}
-              </p>
+              </p>              
+              {{result.img}}
             </div>
             <div class="book-actions">
             <button class="button button-positive vendor-book-btn" ui-sref="app.details" style="float:right; margin-right: 0px; height: 42px;">
@@ -18,7 +19,7 @@
             </div>
           </div>
         </div>
-        <div class="news-item" style="margin: 5px;">
+<!--        <div class="news-item" style="margin: 5px;">
           <div class="news-thumb" style="height: 50px; width:50px;">
             <img src="img/jon-snow.jpg" alt="" class="img" style="width:100%; heigth:100%">
           </div>
@@ -30,7 +31,7 @@
               </div>
             </div>
           </div>         
-        </div>
+        </div>-->
       </div>
     </ion-list>
     <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>

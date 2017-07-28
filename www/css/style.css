@@ -343,12 +343,12 @@ label.item.item-input textarea {margin: 10px 0; border-radius: 5px;}
   border-radius: 0px;
 }
 
-.button.button-positive, .button.button-balanced, .activated {
+.button.button-positive, .button.button-balanced, .activated- {
   background: #00e9d5!important;
   border-color: rgb(54, 183, 150);
   box-shadow: none;
 }
-.button.button-positive:hover, .button.button-balanced:hover, .button.button-positive.activated, .button.button-balanced .activated{
+.button.button-positive:hover, .button.button-balanced:hover, .button.button-positive.activated-, .button.button-balanced .activated-{
   border-color: rgb(54, 183, 150);
   border-radius: 0px;
 }
@@ -407,8 +407,8 @@ select {
   color:rgb(54, 183, 150);
 }
 .toggle.toggle-balanced input:checked + .track {
-  border-color: rgba(236, 112, 5, 0.88);
-  background-color: rgba(236, 112, 5, 0.88);
+  border-color: #00e9d5;
+  background-color: #00e9d5;
 }
 .button-outline.button-outline {
   border-color: #b2b2b2;
@@ -615,7 +615,7 @@ calendar-container {height:1000px;}
 }
 .calendar-event-inner {
   overflow: hidden;
-  background-color: #3a87ad;
+  background-color: #00e9d5;
   color: white;
   height: 100%;
   width: 100%;
@@ -627,14 +627,14 @@ calendar-container {height:1000px;}
   height: 37px;
 }
 .monthview-primary-with-event {
-  background-color: #3a87ad;
+  background-color: #00e9d5;
   color: white;
 }
 .monthview-current {
   background-color: lightgrey;
 }
 .monthview-selected {
-  background-color: #009900;
+  background-color: #00e9d5;
   color: white;
 }
 .monthview-eventdetail-timecolumn {
