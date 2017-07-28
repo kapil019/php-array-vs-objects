@@ -732,3 +732,7 @@ calendar-container {height:1000px;}
   padding: 10px;
   padding-bottom: 0px;
 }
+.cate-lv1 .cate-lv1-item .item-wrapper p {
+  float: left;
+  margin-left: 10px;
+}

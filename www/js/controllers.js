@@ -68,17 +68,17 @@ angular.module('starter.controllers', [])
     $scope.categoryList = [];
     $scope.stateList = [];
     $scope.cityList = [];
-    apiManager.getCategoryList($scope.signupData).then(function (resp) {
-      if (!resp.code) {
-        $scope.categoryList = resp.body.data;
-      }
-      apiManager.getStateList().then(function (resp) {
-        if (!resp.code) {
-          $scope.stateList = resp.body.data;
-          $scope.updateCityList($scope.stateList[0].id);
-        }
-      });
-    });
+//    apiManager.getCategoryList($scope.signupData).then(function (resp) {
+//      if (!resp.code) {
+//        $scope.categoryList = resp.body.data;
+//      }
+//      apiManager.getStateList().then(function (resp) {
+//        if (!resp.code) {
+//          $scope.stateList = resp.body.data;
+//          $scope.updateCityList($scope.stateList[0].id);
+//        }
+//      });
+//    });
 
     $scope.updateCityList = function ($stateId) {
       $ionicLoading.show();
@@ -206,12 +206,14 @@ angular.module('starter.controllers', [])
    * @param {type} apiManager
    * @returns {undefined}
    */
-  .controller('HomeCtrl', function ($scope, $timeout, apiManager, $ionicLoading) {
+  .controller('HomeCtrl', function ($scope, $timeout, apiManager, $ionicLoading, CONFIG) {
     $scope.categoryList = [];
+    $scope.imageUrl = CONFIG.imageUrl;
     $ionicLoading.show();
-    apiManager.getCategoryList().then(function (resp) {
-      if (!resp.code) {
-        $scope.categoryList = resp.body.data;
+    apiManager.getProductList().then(function (resp) {
+      if (resp.error === false) {
+        $ionicLoading.hide();
+        $scope.productList = resp.products;
         $ionicLoading.hide();
       }
     });

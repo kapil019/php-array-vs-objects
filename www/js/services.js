@@ -590,90 +590,19 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
         defer.resolve(resp);
       }).error(function () {
         $ionicLoading.hide();
-        var resp = {
-          status: "200",
-          body: {
-            data: [
-              {
-                id: "1",
-                category: "Europe",
-                parent_id: "0",
-                image: "../www/img/travel/act1.jpg",
-                description: "9 Packges",
-                priceCap: "Starting From Rs:23,800"
-              },
-              {
-                id: "2",
-                category: "Bubai",
-                parent_id: "0",
-                image: "../www/img/travel/act2.jpg",
-                description: "2 Packges",
-                priceCap: "Starting From Rs:23,800"
-              },
-              {
-                id: "3",
-                category: "Kerala",
-                parent_id: "0",
-                image: "../www/img/travel/act3.jpg",
-                description: "16 Packges",
-                priceCap: "Starting From Rs:23,800"
-              },
-              {
-                id: "4",
-                category: "Thialand",
-                parent_id: "0",
-                image: "../www/img/travel/act4.jpg",
-                description: "9 Packges",
-                priceCap: "Starting From Rs:23,800"
-              },
-              {id: "9",
-                category: "Utter Pradesh",
-                parent_id: "0",
-                image: "../www/img/travel/act5.jpg",
-                description: "2 Packges",
-                priceCap: "Starting From Rs:23,800"
-              },
-              {
-                id: "5",
-                category: "Singapore",
-                parent_id: "0",
-                image: "../www/img/travel/act6.jpg",
-                description: "16 Packges",
-                priceCap: "Starting From Rs:23,800"
-              }, {
-                id: "5",
-                category: "Thailand",
-                parent_id: "0",
-                image: "../www/img/travel/act7.jpg",
-                description: "16 Packges",
-                priceCap: "Starting From Rs:23,800"
-              }, {
-                id: "5",
-                category: "Singapore",
-                parent_id: "0",
-                image: "../www/img/travel/act13.jpg",
-                description: "16 Packges",
-                priceCap: "Starting From Rs:23,800"
-              }, {
-                id: "5",
-                category: "Singapore",
-                parent_id: "0",
-                image: "../www/img/travel/act10.jpg",
-                description: "16 Packges",
-                priceCap: "Starting From Rs:23,800"
-              }, {
-                id: "5",
-                category: "Rampur",
-                parent_id: "0",
-                image: "../www/img/travel/act11.jpg",
-                description: "16 Packges",
-                priceCap: "Starting From Rs:23,800"
-              }
-            ],
-            code: 0
-          }
-        }
+        defer.resolve(false);
+        $log.error("Error in getCategoryList api.");
+      });
+      return defer.promise;
+    },
+    getProductList: function ($request) {
+      var defer = $q.defer();
+      $http.get(CONFIG.apiUrl + "products?api_key=" + CONFIG.apiKey, $request).success(function (resp) {
+        $log.log(resp);
         defer.resolve(resp);
+      }).error(function () {
+        $ionicLoading.hide();
+        defer.resolve(false);
         $log.error("Error in getCategoryList api.");
       });
       return defer.promise;

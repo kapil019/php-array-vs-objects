@@ -106,14 +106,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       });
     $urlRouterProvider.otherwise('/app/home');
-  });
+  }).filter('stripStrong', function () {
+  return function (str) {
+    var _string = str.replace(/<strong>/, '').replace(/<\/strong>/, '').replace(/<b>/, '').replace(/<\/b>/, '');
+    return _string;
+  };
+});
 
 /*global define */
 angular.module('starter.config', [])
   .constant('CONFIG', {
-    imageUrl: 'http://image.test.com/',
+    imageUrl: 'http://www.countryholidaysinnsuites.com/admin/upload/',
     apiKey: '341542grfyt345325326',
-    apiUrl: 'http://demo.incaendo.com/webcroud/kapil/booking-api/2',
+    apiUrl: 'http://demo.incaendo.com/kapil/country-holiday/api/rest/api/src/v1/',
     validators: {
       email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       password: /^.{6,12}$/,
