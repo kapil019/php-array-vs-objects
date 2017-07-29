@@ -206,11 +206,11 @@ angular.module('starter.controllers', [])
    * @param {type} apiManager
    * @returns {undefined}
    */
-  .controller('HomeCtrl', function ($scope, $timeout, apiManager, $ionicLoading, CONFIG) {
+  .controller('HomeCtrl', function ($scope, $stateParams, apiManager, $ionicLoading, CONFIG) {
     $scope.categoryList = [];
     $scope.imageUrl = CONFIG.imageUrl;
     $ionicLoading.show();
-    apiManager.getProductList().then(function (resp) {
+    apiManager.getProductList($stateParams.type).then(function (resp) {
       if (resp.error === false) {
         $ionicLoading.hide();
         $scope.productList = resp.products;
@@ -459,28 +459,18 @@ angular.module('starter.controllers', [])
     $scope.goToBook = function () {
       $state.go("app.book-now");
     };
-
-    $scope.days = CONFIG.days;
-    $scope.slots = {};
-    $scope.activeDay = "";
-    if ($stateParams.day) {
-      $scope.activeDay = $stateParams.day;
-    } else {
-      $scope.activeDay = "SUN";
-    }
-    apiManager.getBaseSlotList($scope.formData).then(function (resp) {
-      $scope.slots = resp;
-    });
-
-    $scope.selectSlot = function ($slot_key) {
-      angular.forEach($scope.slots, function (value, key) {
-        if (key !== $slot_key) {
-          $scope.slots[key].active = false;
-        } else {
-          $scope.slots[key].active = true;
-        }
-      });
+    $scope.imageUrl = CONFIG.imageUrl;
+    $scope.activeTab = 'location';
+    
+    $scope.selectTab = function(tab) {
+      $scope.activeTab = tab;      
     };
+    
+    apiManager.getProductDetail($stateParams.productId).then(function (resp) {
+      if (resp.error === false) {
+        $scope.product = resp.product;
+      }
+    });
   })
 
   .controller('BookingSuccessCtrl', function ($scope, $timeout, $ionicActionSheet, $state) {

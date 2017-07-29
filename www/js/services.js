@@ -595,15 +595,31 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
       });
       return defer.promise;
     },
-    getProductList: function ($request) {
+    getProductList: function (type) {
       var defer = $q.defer();
-      $http.get(CONFIG.apiUrl + "products?api_key=" + CONFIG.apiKey, $request).success(function (resp) {
+      var url = 'products';
+      if (type && type === 'properties') {
+        url = 'properties';
+      }
+      $http.get(CONFIG.apiUrl + url +"?api_key=" + CONFIG.apiKey).success(function (resp) {
         $log.log(resp);
         defer.resolve(resp);
       }).error(function () {
         $ionicLoading.hide();
         defer.resolve(false);
-        $log.error("Error in getCategoryList api.");
+        $log.error("Error in getProductList api.");
+      });
+      return defer.promise;
+    },
+    getProductDetail: function (productId) {
+      var defer = $q.defer();
+      $http.get(CONFIG.apiUrl + "product/" + productId + "?api_key=" + CONFIG.apiKey).success(function (resp) {
+        $log.log(resp);
+        defer.resolve(resp);
+      }).error(function () {
+        $ionicLoading.hide();
+        defer.resolve(false);
+        $log.error("Error in getProductDetail api.");
       });
       return defer.promise;
     },

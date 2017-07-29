@@ -736,3 +736,22 @@ calendar-container {height:1000px;}
   float: left;
   margin-left: 10px;
 }
+.tab-content{
+  display: none;
+}
+.tab-show{
+  display: block!important;
+}
+.padding-bottom-100{
+  padding-bottom: 100px;
+}
+.slider-pager .slider-pager-page {
+  color: #ffffff;
+}
+.slider-pager .slider-pager-page {
+  display: inline-block;
+  margin: 0px 3px;
+  width: 15px;
+  text-decoration: none;
+  opacity: 0.3;
+}

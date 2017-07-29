@@ -1,83 +1,71 @@
-<ion-view title="First Post View">
+<ion-view title="View Details">
   <ion-content class="gem-ion-content single-post">
-    <div class="gem-post-media">
-      <div class="topbar">
-        <div class="row">
-          <div class="col col-75 gem-text-right gem-white">
-            <!--<span class="gem-label warning">Love</span>-->
-            <span class="gem-label success">Love</span>
-          </div>
-        </div>
+    <div class="row-slider">
+      <div class="col-slider">
+        <ion-slide-box auto-play="true" does-continue="true" slide-interval="5000">
+          <ion-slide ng-repeat="image in product.images">
+            <div class="list">
+              <div class="item item-image">
+                <a href="#">
+                  <img class="slider-image fluid-image"  on-finish="onFinishRemoteSecond" on-start="onStartRemoteSecond" on-progress="onProgressRemoteSecond" cache-src="{{imageUrl}}{{image}}" src="{{imageUrl}}{{image}}" style="height: 140px;">
+                  <div class="isicontent">
+                  </div>	
+                </a>
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slide-box>
       </div>
-      <img src="../www/img/travel/act1.jpg" alt="" class="fluid-image">
-      <h3 class="post-title">R Travels (D 234, Dwarka sec 7 New Delhi)  </h3>
-      <div class="bottombar-and-shadow"></div>
     </div>
+    <!--    <div class="gem-post-media">
+          <div class="topbar">
+            <div class="row">
+              <div class="col col-75 gem-text-right gem-white">
+                <span class="gem-label success">{{product.name}}</span>
+              </div>
+            </div>
+          </div>
+          <img src="../www/img/travel/act1.jpg" alt="" class="fluid-image">
+          <div class="bottombar-and-shadow"></div>
+        </div>-->
     <div class="list- animate-fade-slide-in-right-">
       <div class="item">
-        <h2>Kapil Chauhan (8882192757)</h2>
-        <p>kkchauhan019@gmail.com</p>
-        <h3 class="post-title">R Travels (D 234, Dwarka sec 7 New Delhi)  </h3>
+        <h2>{{product.name}}</h2>
+        <p>{{product.duration}}</p>
+        <h3 class="post-title" ng-bind-html="product.location | stripStrong">   </h3>
       </div>
     </div>    
 
-    <div class="list animate-fade-slide-in-right-">
-      <input type="radio" name="day" value="sun" style="display: none;">
-      <div class="list gem-list">
-        <div class="tabs tabs-top tab-day-selection" style="top:0px">
-          <a class="tab-item" href="#app/feed/0" ng-repeat="day in days">
-            <div class="tab-item active" ng-if="day == activeDay">
-              <div class="schedule-day">{{day}}</div>
-              <div class="schedule-date"> 21 NOV </div>
-            </div>
-            <div class="tab-item" ng-if="day != activeDay">
-              <div class="schedule-day">{{day}}</div>
-              <div class="schedule-date"> 21 OCT</div>
-            </div>
-          </a>
-        </div>
-        <div style="height: 50px;"></div>
-        <h4 class="content padding double-padding-x" style="padding-top: 2px!important;
-            padding-bottom: 0px!important;
-            color: #43AD92;">Select Time</h4>
-        <form ng-submit="editProfile()" class="gem-form-schedule-edit">
-          <!--          <div class="item item-toggle item-icon-left" style="pointer-events: all; margin-top: 8px;" ng-repeat="(slot_key, slot) in slots">
-                      <i class="icon ion-clock schedule-clock-icon"></i>
-                      {{slot.title}}
-                      <select class="select-style" ng-if="slots[slot_key]['active']">
-                        <option>1 Seat</option>
-                        <option>2 Seats</option>
-                      </select>
-                      <span class="select-style" ng-if="!slots[slot_key]['active']" disabled="disabled">
-          
-                      </span>
-                      <label class="toggle toggle-balanced">          
-                        <input type="checkbox" checked="checked" ng-if="slot.active" ng-model="slots[slot_key]['active']">
-                        <input type="checkbox" ng-if="!slot.active" ng-model="slots[slot_key]['active']" ng-change="selectSlot(slot_key)">
-                        <div class="track">
-                          <div class="handle"></div>
-                        </div>
-                      </label>
-                    </div>-->
-        </form>
-      </div>
-    </div>
 
     <!-- Post Content -->
     <div class="gem-post-content">
-      <div class="product-descriptions">
-        <p>Conveniently located just a 2-minute drive from Dubai International Airport, this International 4-star business class hotel features 4 restaurants and 3 bars, an outdoor swimming pool and a gym. The modern rooms are soundproofed and include a seating area.</p>
-        <p>The well designed rooms at the Millennium Dubai Airport Hotel are decorated in warm colors. They have satellite TV and a private bathroom with toiletries.</p>
-        <p>Guests of the Millennium Airport Hotel can enjoy an eclectic mix of dining and entertainment options: authentic Italian cuisine at Da Vinci's Italian Trattoria, traditional British fare and watch live sports at Biggles Pub, Tex-Mex food &amp; Latino music at Cactus Jacks, amazing selection of grills at the DXB Grill or our international buffet (all day dining) at Loumi restaurant.</p>
-        <p>For recreational purposes, guests can have a swim or cool down with some drinks at the Oasis Pool &amp; Bar. Guests can enjoy the on-site shops or room service.</p>
-        <p>The hotel is situated near GGICO Dubai Metro Station. It is also within easy reach to Deira City Center Shopping Mall, Dubai Festival City, Gold Souq and Dubai Heritage Village and other major business districts and tourist attractions.&nbsp;</p>
-        <p>Garhoud is a great choice for travellers interested in&nbsp;sightseeing,&nbsp;shoppingluxury brand shopping.</p>
-        <p>Couples particularly like the location — they rated it 8 for a two-person trip.</p>
-        <p>This property is also rated for the best value in Dubai! Guests are getting more for their money when compared to other properties in this city.</p></div>
+      <div class="product-descriptions" ng-bind-html="product.description | stripStrong"></div>
+      <!--      <label class="item">
+              <button class="button button-block button-positive" type="submit" ui-sref="app.booking-success">Book Now</button>
+            </label>-->
     </div>
-    <label class="item">
-      <button class="button button-block button-positive" type="submit" ui-sref="app.booking-success">Book Now</button>
-    </label>
+    <div class="list animate-fade-slide-in-right padding-bottom-100">
+      <input type="radio" name="day" value="sun" style="display: none;">
+      <div class="list gem-list">
+        <div class="tabs tabs-top tab-day-selection" style="top:0px">
+          <a class="tab-item">
+            <div class="tab-item" ng-class="{'active':activeTab == 'location'}" ng-click="selectTab('location')">
+              <div class="schedule-day-">Location</div>
+            </div>
+          </a>
+          <a class="tab-item">
+            <div class="tab-item"  ng-class="{'active':activeTab == 'aminities'}" ng-click="selectTab('aminities')">
+              <div class="schedule-day-">Aminities</div>
+            </div>
+          </a>
+        </div>
+        <div style="clear: both; margin-top: 70px">
+          <div class="product-descriptions tab-content" ng-class="{'tab-show':activeTab == 'location'}" ng-bind-html="product.phighlight | stripStrong"></div>
+          <div class="product-descriptions tab-content" ng-class="{'tab-show':activeTab == 'aminities'}" ng-bind-html="product.aminities | stripStrong"></div>
+        </div>
+      </div>
+    </div>
+
 
   </ion-content>
 </ion-view>

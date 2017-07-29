@@ -38,8 +38,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           }
         }
       })
+      .state('app.properties', {
+        url: "/home/:type",
+        cache: false,
+        views: {
+          'menuContent': {
+            templateUrl: "templates/properties.html",
+            controller: 'HomeCtrl'
+          }
+        }
+      })
       .state('app.details', {
-        url: "/details/:vendorId",
+        url: "/details/:productId",
         cache: false,
         views: {
           'menuContent': {
