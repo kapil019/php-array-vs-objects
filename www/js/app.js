@@ -8,6 +8,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       if (window.StatusBar) {
         StatusBar.styleDefault();
       }
+      
+      if (navigator.splashscreen) {
+        setTimeout(function() {
+          navigator.splashscreen.hide();
+        }, 2000);
+      }
     });
   })
 
@@ -118,7 +124,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $urlRouterProvider.otherwise('/app/home');
   }).filter('stripStrong', function () {
   return function (str) {
-    var _string = str.replace(/<strong>/, '').replace(/<\/strong>/, '').replace(/<b>/, '').replace(/<\/b>/, '');
+    str = str.replace(/<strong>/, '').replace(/<\/strong>/, '').replace(/<b>/, '').replace(/<\/b>/, '');
+    var _string = str.split("<p>&nbsp;</p>").join('').replace(/<\/strong>/, '').replace(/<b>/, '').replace(/<\/b>/, '');
     return _string;
   };
 });
@@ -128,7 +135,8 @@ angular.module('starter.config', [])
   .constant('CONFIG', {
     imageUrl: 'http://www.countryholidaysinnsuites.com/admin/upload/',
     apiKey: '341542grfyt345325326',
-    apiUrl: 'http://demo.incaendo.com/kapil/country-holiday/api/rest/api/src/v1/',
+//    apiUrl: 'http://demo.incaendo.com/kapil/country-holiday/api/rest/api/src/v1/',
+    apiUrl: 'http://www.countryholidaysinnsuites.com/rest/api/v1/index.php/',
     validators: {
       email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       password: /^.{6,12}$/,

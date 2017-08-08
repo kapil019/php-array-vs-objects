@@ -13,8 +13,8 @@
   </ion-side-menu-content>
   <ion-side-menu side="right">
     <ion-header-bar class="dark-bg expanded-">
-      <h2 ng-if="isUserLoggedIn"> Welcome {{user.first_name}}</h2>
-      <h2 ng-if="!isUserLoggedIn"> Welcome Guest</h2>
+      <h2 ng-if="isUserLoggedIn">{{user.first_name}}</h2>
+      <h2 ng-if="!isUserLoggedIn">Guest</h2>
     </ion-header-bar>
     <ion-content class="stable-bg has-expanded-header">
       <ion-list>        

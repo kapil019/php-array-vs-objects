@@ -333,7 +333,7 @@ label.item.item-input textarea {margin: 10px 0; border-radius: 5px;}
   font-weight: bold;
 }
 [nav-bar-transition="ios"] [nav-bar="active"] .bar, [nav-bar-transition="ios"] [nav-bar="entering"] .bar, .bar-header{
-  background: #00e9d5;
+  background: #00e9d5!important;
 }
 .bar-header .title, .button-clear.button-clear{
   color: #fff;
@@ -372,7 +372,7 @@ input, select, textarea {
 }
 /*.button3 {
     background: #ffffff;
-    color: #00e9d5;
+    color: #00e9d5!important;
     border-radius: 25px;
     margin-top: 10px;
     width: 200px;
@@ -407,8 +407,8 @@ select {
   color:rgb(54, 183, 150);
 }
 .toggle.toggle-balanced input:checked + .track {
-  border-color: #00e9d5;
-  background-color: #00e9d5;
+  border-color: #00e9d5!important;
+  background-color: #00e9d5!important;
 }
 .button-outline.button-outline {
   border-color: #b2b2b2;
@@ -486,7 +486,7 @@ calendar-container {height:1000px;}
   margin: 0px!important; padding: 0px!important;
 }
 .bar.bar-positive {
-  border-color: #00e9d5;
+  border-color: #00e9d5!important;
 }
 .book-actions {
   clear:both;
@@ -505,7 +505,7 @@ calendar-container {height:1000px;}
 }
 .footer-buttons {
   width: 50%;
-  background: #00e9d5;
+  background: #00e9d5!important;
 }
 .date-input:before {
   color: lightgrey;
@@ -615,7 +615,7 @@ calendar-container {height:1000px;}
 }
 .calendar-event-inner {
   overflow: hidden;
-  background-color: #00e9d5;
+  background-color: #00e9d5!important;
   color: white;
   height: 100%;
   width: 100%;
@@ -627,14 +627,14 @@ calendar-container {height:1000px;}
   height: 37px;
 }
 .monthview-primary-with-event {
-  background-color: #00e9d5;
+  background-color: #00e9d5!important;
   color: white;
 }
 .monthview-current {
   background-color: lightgrey;
 }
 .monthview-selected {
-  background-color: #00e9d5;
+  background-color: #00e9d5!important;
   color: white;
 }
 .monthview-eventdetail-timecolumn {
@@ -722,7 +722,7 @@ calendar-container {height:1000px;}
 .category-list i{
   font-size: 20px!important;
   padding: 8px!important;
-  color: #00e9d5;
+  color: #00e9d5!important;
 }
 .slot-filter {width: 50%;}
 .modal .button-clear {
@@ -754,4 +754,11 @@ calendar-container {height:1000px;}
   width: 15px;
   text-decoration: none;
   opacity: 0.3;
+}
+.gem-list .product-descriptions{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.product-descriptions strong{
+  font-weight: normal!important;
 }
