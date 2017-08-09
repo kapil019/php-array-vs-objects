@@ -762,3 +762,21 @@ calendar-container {height:1000px;}
 .product-descriptions strong{
   font-weight: normal!important;
 }
+.profile-detail-table .item{
+  padding: 0px!important;
+  border-bottom: 1px solid #B2B2B2;
+  margin-bottom: 10px;
+  margin-left: -20px;
+}
+.profile-detail-table .item th{
+  font-weight:300;
+  border-right: 1px solid #ccc;
+  width: 200px;
+}
+.profile-detail-table .item th, .profile-detail-table .item td {
+  vertical-align: middle;
+  padding-left: 20px;
+}
+.bar.bar-header .button+.title {
+  left: 10px;
+}

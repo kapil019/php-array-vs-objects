@@ -4,12 +4,12 @@
       <div class="col-slider">
         <ion-slide-box auto-play="true" does-continue="true" slide-interval="5000">
           <ion-slide ng-repeat="image in product.images">
-            <div class="list">
+            <div class="list card">
               <div class="item item-image">
-                <a href="#">
-                  <img class="slider-image fluid-image"  on-finish="onFinishRemoteSecond" on-start="onStartRemoteSecond" on-progress="onProgressRemoteSecond" cache-src="{{imageUrl}}{{image}}" src="{{imageUrl}}{{image}}" style="height: 140px;">
+                <a href="#" style="background-color: #ccc;">
+                  <img class="slider-image fluid-image" onerror="this.src=''" on-finish="onFinishRemoteSecond" on-start="onStartRemoteSecond" on-progress="onProgressRemoteSecond" cache-src="{{imageUrl}}{{image}}" src="{{imageUrl}}{{image}}" style="height: 140px; background-color: #ccc;">
                   <div class="isicontent">
-                  </div>	
+                  </div>
                 </a>
               </div>
             </div>
@@ -17,32 +17,16 @@
         </ion-slide-box>
       </div>
     </div>
-    <!--    <div class="gem-post-media">
-          <div class="topbar">
-            <div class="row">
-              <div class="col col-75 gem-text-right gem-white">
-                <span class="gem-label success">{{product.name}}</span>
-              </div>
-            </div>
-          </div>
-          <img src="../www/img/travel/act1.jpg" alt="" class="fluid-image">
-          <div class="bottombar-and-shadow"></div>
-        </div>-->
     <div class="list- animate-fade-slide-in-right-">
       <div class="item">
         <h2>{{product.name}}</h2>
         <p>{{product.duration}}</p>
         <h3 class="post-title" ng-bind-html="product.location | stripStrong">   </h3>
       </div>
-    </div>    
-
-
+    </div>
     <!-- Post Content -->
     <div class="gem-post-content">
       <div class="product-descriptions" ng-bind-html="product.description | stripStrong"></div>
-      <!--      <label class="item">
-              <button class="button button-block button-positive" type="submit" ui-sref="app.booking-success">Book Now</button>
-            </label>-->
     </div>
     <div class="list animate-fade-slide-in-right padding-bottom-100">
       <input type="radio" name="day" value="sun" style="display: none;">

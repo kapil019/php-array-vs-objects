@@ -1,32 +1,86 @@
 <ion-view view-title="Profile">
   <ion-content>
-    <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg'); max-height: 200px;">
-      <div class="content">
-        <div class="avatar" style="background-image: url('img/daenerys.jpg');"></div>
-        <h3><a class="light">{{profileData.first_name}} {{profileData.last_name}}</a></h3>
-        <h4>{{profileData.state.name}} {{profileData.city.name}} {{profileData.pincode}}</h4>
-        <button class="button button-icon icon ion-edit"ui-sref="app.editprofile"></button>
-      </div>
-    </div>
     <div class="list animate-fade-slide-in-right-">
-      <a ui-sref="#" class="item">
-        <h2>Name</h2>
-        <p>{{profileData.first_name}} {{profileData.last_name}}</p>
-        
-        <h2>Email</h2>
-        <p>{{profileData.email}}</p>
-        
-        <h2>Phone</h2>
-        <p>{{profileData.phone}}</p>
-      </a>
-      <a ui-sref="#" class="item">
-        <h2>Address</h2>
-        <p>{{profileData.address}} {{profileData.state.name}} {{profileData.city.name}} {{profileData.pincode}}</p>
-      </a>
-      <a ui-sref="#" class="item">
-        <h2>About Me</h2>
-        <p>{{profileData.about_me}}</p>
-      </a>
+      <table width="100%" border="1" style="margin: 20px;" class="profile-detail-table">
+        <tbody>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Membership Card No</th>
+            <td height="40"> {{profileData.card_no}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Membership Joining Date</th>
+            <td height="40"> {{profileData.joindate}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Spouse Name</th>
+            <td height="40"> {{profileData.spouse_name}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Name</th>
+            <td height="40">{{profileData.member_name}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">DOB</th>
+            <td height="40">{{profileData.dob}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">First Children Name</th>
+            <td height="40">{{profileData.childrenf}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Second Children Name</th>
+            <td height="40">{{profileData.childrensec}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Marriage Anniversary</th>
+            <td height="40">{{profileData.anniversary}}</td>
+          </tr>
+
+
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Last Holiday Used</th>
+            <td height="40">{{profileData.lastHoliday}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Membership Category</th>
+            <td height="40">{{profileData.mcategory}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Mobile No</th>
+            <td height="40">{{profileData.phone_no}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Address</th>
+            <td height="40" ng-bind-html="profileData.address">
+                  
+            </td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Membership Tenure</th>
+            <td height="40" ng-bind-html="profileData.package_detail">
+                  
+            </td>
+          </tr>
+
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Membership Amount</th>
+            <td height="40">{{profileData.package_amount}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Advance Amount</th>
+            <td height="40">{{profileData.advance_amount}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Due Amount</th>
+            <td height="40">{{profileData.due_amount}}</td>
+          </tr>
+          <tr class="item">
+            <th height="40" width="200" style="text-align:left;">Amc Amount</th>
+            <td height="40">{{profileData.amcamount}}</td>
+          </tr>
+
+        </tbody>
+      </table>
     </div>    
   </ion-content>
 </ion-view>

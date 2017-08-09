@@ -113,15 +113,15 @@ angular.module('starter.controllers', [])
           $ionicLoading.show();
           $log.log("Inside valid details");
           apiManager.login($scope.formData).then(function (resp) {
-
-            if (!resp.status) {
+            if (!resp.error) {
               $localStorage.setUser({
-                id: resp.body.id,
-                first_name: resp.body.first_name,
-                last_name: resp.body.last_name,
-                profile_image: resp.body.profile_image,
-                email: resp.body.email,
-                phone: resp.body.phone
+                id: resp.user.tlb_cms_id,
+                first_name: resp.user.member_name.split(" ")[0],
+                last_name: resp.user.last_name,
+                name: resp.user.member_name,
+//                profile_image: resp.user.profile_image,
+                email: resp.user.membership_id,
+                phone: resp.user.phone_no
               }).then(function (resp) {
                 $rootScope.isUserLoggedIn = true;
                 $rootScope.isUserLoggedInn();
@@ -232,33 +232,11 @@ angular.module('starter.controllers', [])
     $scope.cityList = [];
     $ionicLoading.show();
     apiManager.getProfile($scope.user.id).then(function (resp) {
-      if (!resp.code) {
-        $scope.profileData = resp.body.data;
-        apiManager.getStateList().then(function (resp) {
-          var resp = {"status": "200", "body": {"data": [{"id": "1", "name": "Andaman and Nicobar Islands"}, {"id": "2", "name": "Andhra Pradesh"}, {"id": "3", "name": "Arunachal Pradesh"}, {"id": "4", "name": "Assam"}, {"id": "5", "name": "Bihar"}, {"id": "6", "name": "Chandigarh"}, {"id": "7", "name": "Chhattisgarh"}, {"id": "8", "name": "Dadra and Nagar Haveli"}, {"id": "9", "name": "Daman and Diu"}, {"id": "10", "name": "Delhi"}, {"id": "11", "name": "Goa"}, {"id": "12", "name": "Gujarat"}, {"id": "13", "name": "Haryana"}, {"id": "14", "name": "Himachal Pradesh"}, {"id": "15", "name": "Jammu and Kashmir"}, {"id": "16", "name": "Jharkhand"}, {"id": "17", "name": "Karnataka"}, {"id": "18", "name": "Kenmore"}, {"id": "19", "name": "Kerala"}, {"id": "20", "name": "Lakshadweep"}, {"id": "21", "name": "Madhya Pradesh"}, {"id": "22", "name": "Maharashtra"}, {"id": "23", "name": "Manipur"}, {"id": "24", "name": "Meghalaya"}, {"id": "25", "name": "Mizoram"}, {"id": "26", "name": "Nagaland"}, {"id": "27", "name": "Narora"}, {"id": "28", "name": "Natwar"}, {"id": "29", "name": "Odisha"}, {"id": "30", "name": "Paschim Medinipur"}, {"id": "31", "name": "Pondicherry"}, {"id": "32", "name": "Punjab"}, {"id": "33", "name": "Rajasthan"}, {"id": "34", "name": "Sikkim"}, {"id": "35", "name": "Tamil Nadu"}, {"id": "36", "name": "Telangana"}, {"id": "37", "name": "Tripura"}, {"id": "38", "name": "Uttar Pradesh"}, {"id": "39", "name": "Uttarakhand"}, {"id": "40", "name": "Vaishali"}, {"id": "41", "name": "West Bengal"}], "code": 0}};
-          if (!resp.code) {
-            $scope.stateList = resp.body.data;
-            for (var i = 0; i < $scope.stateList.length; i++) {
-              var state = $scope.stateList[i];
-              if (state.id === $scope.profileData.state_id) {
-                $scope.profileData.state = state;
-              }
-            }
-            apiManager.getCityList($scope.profileData.state.id).then(function (resp) {
-              var resp = {"status": "200", "body": {"data": [{"id": "1", "name": "Bombuflat"}, {"id": "2", "name": "Garacharma"}, {"id": "3", "name": "Port Blair"}, {"id": "4", "name": "Rangat"}], "code": 0}};
-              if (!resp.code) {
-                $scope.cityList = resp.body.data;
-                for (var i = 0; i < $scope.cityList.length; i++) {
-                  var city = $scope.cityList[i];
-                  if (city.id === $scope.profileData.city_id) {
-                    $scope.profileData.city = city;
-                  }
-                }
-                $ionicLoading.hide();
-              }
-            });
-          }
-        });
+      $ionicLoading.hide();
+      if (!resp.error) {
+        resp.data.address = resp.data.address.split(",").join("<br>");
+        resp.data.package_detail = resp.data.package_detail.split("FOR ").join("<br>FOR ");
+        $scope.profileData = resp.data;
       }
     });
 

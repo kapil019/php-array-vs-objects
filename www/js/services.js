@@ -15,13 +15,10 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
       $log.log("Login api request data");
       $log.log($request);
       var defer = $q.defer();
-      $http.post(CONFIG.apiUrl + "booking/login?api_key=" + CONFIG.apiKey, $request).success(function (resp) {
+      $http.post(CONFIG.apiUrl + "login?api_key=" + CONFIG.apiKey, $request).success(function (resp) {
         $log.log(resp);
-        var resp = {"status": 0, "body": {"id": "7", "first_name": "Kapil", "last_name": "Chauhan", "email": "test2@test.com", "phone": "12345689", "profile_image": "http://demo.incaendo.com/webcroud/kapil/booking-api/files/img/act1.jpg", "token": "nnZYoknc", "usertype": "vendor", "code": 0}};
         defer.resolve(resp);
       }).error(function () {
-        var resp = {"status": 0, "body": {"id": "7", "first_name": "Kapil", "last_name": "Chauhan", "email": "test2@test.com", "phone": "12345689", "profile_image": "http://demo.incaendo.com/webcroud/kapil/booking-api/files/img/act1.jpg", "token": "nnZYoknc", "usertype": "vendor", "code": 0}};
-        defer.resolve(resp);
         $ionicLoading.hide();
         $log.error("Error in login api.");
       });
@@ -75,7 +72,7 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
     },
     getProfile: function (userId) {
       var defer = $q.defer();
-      $http.get(CONFIG.apiUrl + "booking/userdetails?user_id=" + userId + "&api_key=" + CONFIG.apiKey).success(function (resp) {
+      $http.get(CONFIG.apiUrl + "cms/" + userId + "?api_key=" + CONFIG.apiKey).success(function (resp) {
         $log.log(resp);
         defer.resolve(resp);
       }).error(function () {

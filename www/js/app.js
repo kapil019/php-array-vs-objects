@@ -135,8 +135,8 @@ angular.module('starter.config', [])
   .constant('CONFIG', {
     imageUrl: 'http://www.countryholidaysinnsuites.com/admin/upload/',
     apiKey: '341542grfyt345325326',
-//    apiUrl: 'http://demo.incaendo.com/kapil/country-holiday/api/rest/api/src/v1/',
-    apiUrl: 'http://www.countryholidaysinnsuites.com/rest/api/v1/index.php/',
+    apiUrl: 'http://demo.incaendo.com/kapil/country-holiday/api/rest/api/src/v1/',
+//    apiUrl: 'http://www.countryholidaysinnsuites.com/rest/api/v1/index.php/',
     validators: {
       email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       password: /^.{6,12}$/,
