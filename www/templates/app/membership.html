@@ -1,13 +1,14 @@
-<ion-view view-title="Register">
+<ion-view view-title="{{pageTitle}}">
   <div class="modal-">
     <ion-header-bar>
-      <h1 class="title">Register</h1>
-      <!--<div class="buttons">-->
-      <!--<button class="button button-clear" ng-click="closeModal()"><i class="icon ion-close-circled"></i></button>-->
-      <!--</div>-->
+      <h1 class="title">{{pageTitle}}</h1>
     </ion-header-bar>
     <ion-content>
-      <form ng-submit="doSignup()" class="gem-form" style="margin-top: 50px;">
+      <form ng-submit="doSignup()" class="gem-form" style="margin-top: 30px;">
+        <div class="list card cms-text gem-form-" style="padding: 15px; margin: 15px;">
+          <div style="font-size: 18px; padding-bottom: 20px;" ng-bind-html="cmsData.tlb_cms_title" ng-if='cmsData.tlb_cms_title && cmsData.tlb_cms_title != null'></div>
+          <div ng-bind-html="cmsData.tlb_cms_text" ng-if='cmsData.tlb_cms_text && cmsData.tlb_cms_text != null'></div>
+        </div>
         <div class="list">
           <label class="item item-input">
             <input type="text" ng-model="signupData.name" placeholder="Name">
@@ -24,8 +25,12 @@
           <label class="item item-input">
             <input type="text" ng-model="signupData.city" placeholder="City">
           </label>
+          <label class="item item-input- " style="text-align: word-wrap">
+            <input type="checkbox" ng-model="signupData.accept">
+            I authorise Country Holiday to contact me over the phone number,<br> provided here by me. 
+          </label>
           <label class="item">
-            <button class="button button-block button-positive" type="submit">Register</button>
+            <button class="button button-block button-positive" type="submit">Submit</button>
           </label>
         </div>
       </form>

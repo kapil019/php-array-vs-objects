@@ -74,7 +74,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .gem-ion-content {color: #
 .gem-sidebar.dark .gem-sidebar-profile-box {padding:15px 10px;}
 .gem-sidebar.dark .gem-sidebar-profile-box .title, .gem-sidebar.dark .gem-sidebar-profile-box .action-links {margin: 4px 0;}
 .gem-sidebar.dark .item-complex .item-content, .gem-sidebar.dark .item {background-color: #131313; border-color: #1c1c1c; color: #fff; text-transform: uppercase; font-size: 13px;}
-.gem-sidebar.dark .item-ng-click, .item-complex .item-content, .item-radio .item-content {padding-left: 20px;}
+.gem-sidebar.dark .item-ng-click, .item-complex .item-content, .item-radio .item-content {padding-left: 15px;}
 /*Profile Section*/
 .gem-sidebar.dark .gem-profile-image { border-radius:50px; width:100%; border: 4px solid rgba(255, 255, 255, 0.2);}
 .gem-profile-settings-icon {font-size: 200%; margin-top: 15px;}
@@ -105,7 +105,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .gem-ion-content {color: #
 .article-actions {padding: 5px 0;}
 /*Login Screen*/
 .gem-splash_background {background:#222224 url('../img/gemionic/background.jpg');}
-.gem-form {margin: 7% 2%;}
+.gem-form {margin-bottom: 60px;}
 /*.gem-form .button {margin: 15px 5px;}*/
 .gem-form .item.item-input,  .gem-form .item.item-input .input-label, .gem-form .item {background: none;}
 .gem-bar-clear {background: none;}
@@ -340,7 +340,22 @@ label.item.item-input textarea {margin: 10px 0; border-radius: 5px;}
   text-shadow: none!important;
 }
 .button {
-  border-radius: 0px;
+  /*border-radius: 0px;*/
+}
+.popup-buttons .button {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.36)!important;
+}
+ion-content .button{
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.36)!important;
+  border: 1px rgb(84, 210, 178) solid!important;
+  height: 50px;
+  border-radius: 4px!important;
+  font-size: 12pt !important;
+}
+.slide-menu ion-item{
+  background: #fff;
+  border-bottom: 2px solid #ccc!important;
+  font-size: 15px;
 }
 
 .button.button-positive, .button.button-balanced, .activated- {
@@ -361,29 +376,9 @@ label.item.item-input textarea {margin: 10px 0; border-radius: 5px;}
 .bar-light .button.button-clear:hover, .bar-light .button:hover{
   /*color: rgba(255, 255, 255, 0.91);*/
 }
-
-input, select, textarea {
-  /*border-radius: 0px!important;*/
-  /*border-radius: 20px!important;*/
-  /*text-indent: 20px;*/
+button input, select, textarea {
   vertical-align: middle;
-  /*padding-left: 20px!important;*/
-  /*font-size: 16px;*/
 }
-/*.button3 {
-    background: #ffffff;
-    color: #00e9d5!important;
-    border-radius: 25px;
-    margin-top: 10px;
-    width: 200px;
-    height: 45px;
-    padding: 5px 0;
-    border: 5px #00e9d5 solid;
-    font-size: 14pt !important;
-    font-family: GothamRndSSm !important;
-    letter-spacing: -1px;
-    width:100%;
-}*/
 .has-expanded-header {
   top: 45px!important;
 }
@@ -395,6 +390,8 @@ input, select, textarea {
 textarea, input, select {
   background: rgba(255, 255, 255, 0.7)!important;
   color: #111!important;
+  border-radius: 4px!important;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.20)!important;
 }
 select {
   border: 0px;
@@ -471,7 +468,7 @@ calendar-container {height:1000px;}
   z-index: 1;
 }
 .cate-lv1 .cate-lv1-item .item-wrapper h2 {
-  font-size: 26px;
+  font-size: 18px;
   color: #FFFFFF;
   margin-bottom: 5px;
 }
@@ -763,20 +760,70 @@ calendar-container {height:1000px;}
   font-weight: normal!important;
 }
 .profile-detail-table .item{
+  padding-top: 46px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.36)!important;
   padding: 0px!important;
-  border-bottom: 1px solid #B2B2B2;
-  margin-bottom: 10px;
-  margin-left: -20px;
+  margin-bottom: 5px;
+  margin-left: -10px;
+  background: #fff;
+  border-radius: 3px;
 }
 .profile-detail-table .item th{
   font-weight:300;
   border-right: 1px solid #ccc;
-  width: 200px;
+  width: 150px;
 }
 .profile-detail-table .item th, .profile-detail-table .item td {
   vertical-align: middle;
-  padding-left: 20px;
+  padding-left: 10px;
+  height: 48px;
 }
 .bar.bar-header .button+.title {
   left: 10px;
+}
+.button-clear, .button-fab, .button-flat, .button-raised, .ink, .popup .button {
+  padding: 0px;
+}
+.popup-title {
+  font-size: 18px;
+}
+.cms-text{
+  line-height: 24px;
+}
+.cms-text p {
+  margin: 0 0 5px;
+}
+.cms-text div, .list h3 {
+  color:rgb(84, 82, 82)
+}
+.card {
+  margin: 15px;
+}
+.row-slider{
+  margin-bottom: 15px;
+}
+.destinations li{
+  padding: 10px;
+  border-bottom: 1px solid#ccc;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.36)!important;
+  margin-bottom: 3px;
+  background: #fff;
+  color: rgb(84, 82, 82);
+}
+.sum-menu ion-item{
+  padding-left: 20px;
+}
+ion-item .right-icon{
+  float: right;
+  /*font-size: 16px;*/
+  color: rgb(124, 124, 124)!important;
+}
+.list .item {
+  min-height: 40px;
+}
+.item-complex .item-content, .item-radio .item-content {
+  padding: 10px 48px 10px 10px;
+}
+.ion-android-more-vertical{
+  display: block!important;
 }

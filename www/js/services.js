@@ -39,7 +39,7 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
     },
     signup: function ($request) {
       var defer = $q.defer();
-      $http.post(CONFIG.apiUrl + "booking/register?api_key=" + CONFIG.apiKey, $request).success(function (resp) {
+      $http.post(CONFIG.apiUrl + "register?api_key=" + CONFIG.apiKey, $request).success(function (resp) {
         $log.log(resp);
         defer.resolve(resp);
       }).error(function () {
@@ -708,6 +708,7 @@ app.factory('$localStorage', function ($q) {
       id: 0,
       booking_id: null,
       user_id: "",
+      cache: null,
       user: {
         id: null,
         first_name: null,
@@ -729,6 +730,23 @@ app.factory('$localStorage', function ($q) {
       var defer = $q.defer();
       local_data.user = user;
       local_data.user_id = user.id;
+      localStorage.setItem("local_data", JSON.stringify(local_data));
+      defer.resolve();
+      return defer.promise;
+    },
+    getCache: function (param) {
+      if (local_data.cache && local_data.cache[param]) {
+        return local_data.cache[param];
+      } else {
+        return null;
+      }
+    },
+    setCache: function (param, data) {
+      var defer = $q.defer();
+      if (!local_data.cache || local_data.cache === null) {
+        local_data.cache = {};
+      }
+      local_data.cache[param] = data;
       localStorage.setItem("local_data", JSON.stringify(local_data));
       defer.resolve();
       return defer.promise;

@@ -1,14 +1,14 @@
 <ion-view view-title="Profile">
   <ion-content>
     <div class="list animate-fade-slide-in-right-">
-      <table width="100%" border="1" style="margin: 20px;" class="profile-detail-table">
+      <table width="100%" border="1" ng-if="profileData && profileData !== null" style="margin: 10px;" class="profile-detail-table">
         <tbody>
           <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Membership Card No</th>
+            <th height="40" width="200" style="text-align:left;">Card No</th>
             <td height="40"> {{profileData.card_no}}</td>
           </tr>
           <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Membership Joining Date</th>
+            <th height="40" width="200" style="text-align:left;">Membership Date</th>
             <td height="40"> {{profileData.joindate}}</td>
           </tr>
           <tr class="item">
@@ -24,15 +24,15 @@
             <td height="40">{{profileData.dob}}</td>
           </tr>
           <tr class="item">
-            <th height="40" width="200" style="text-align:left;">First Children Name</th>
+            <th height="40" width="200" style="text-align:left;">First Child Name</th>
             <td height="40">{{profileData.childrenf}}</td>
           </tr>
           <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Second Children Name</th>
+            <th height="40" width="200" style="text-align:left;">Second Child Name</th>
             <td height="40">{{profileData.childrensec}}</td>
           </tr>
           <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Marriage Anniversary</th>
+            <th height="40" width="200" style="text-align:left;">Anniversary</th>
             <td height="40">{{profileData.anniversary}}</td>
           </tr>
 
@@ -42,7 +42,7 @@
             <td height="40">{{profileData.lastHoliday}}</td>
           </tr>
           <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Membership Category</th>
+            <th height="40" width="200" style="text-align:left;">Membership Type</th>
             <td height="40">{{profileData.mcategory}}</td>
           </tr>
           <tr class="item">

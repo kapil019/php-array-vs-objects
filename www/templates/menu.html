@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="true">
+<ion-side-menus>
   <ion-side-menu-content>
     <ion-nav-bar class="bar-assertive-900" ng-class="{expanded: isExpanded, 'has-header-fab-left': hasHeaderFabLeft, 'has-header-fab-right': hasHeaderFabRight}" align-title="left">
       <ion-nav-back-button class="no-text">
@@ -11,21 +11,28 @@
     <ion-nav-view name="fabContent"></ion-nav-view>
     <ion-nav-view name="menuContent" ng-class="{expanded: isExpanded}" ></ion-nav-view>
   </ion-side-menu-content>
-  <ion-side-menu side="right">
-    <ion-header-bar class="dark-bg expanded-">
-      <h2 ng-if="isUserLoggedIn">{{user.first_name}}</h2>
-      <h2 ng-if="!isUserLoggedIn">Guest</h2>
+  <ion-side-menu side="right" class="slide-menu">
+    <ion-header-bar class="dark-bg expanded-" style='height: 130px; padding: 3px;'>
+      <img src="http://www.countryholidaysinnsuites.com/images/innerlogo.png" style="width: 100%;max-height: 100px;" alt="">
+      <h2 ng-if="isUserLoggedIn" style="top: 100px;">{{user.first_name}}</h2>
+      <!--<h2 ng-if="!isUserLoggedIn">Guest</h2>-->
     </ion-header-bar>
-    <ion-content class="stable-bg has-expanded-header">
-      <ion-list>        
-        <ion-item nav-clear menu-close ng-click="login()" ng-if="!isUserLoggedIn">
-          &nbsp;Login
-        </ion-item>
+    <ion-content class="stable-bg has-expanded-header" style='margin-top: 86px;'>
+      <ion-list>
         <ion-item nav-clear menu-close href="#/app/home">
           Home
         </ion-item>
+        <ion-item nav-clear menu-close href="#/app/login" ng-if="!isUserLoggedIn">
+          Member Login
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/signup" ng-if="!isUserLoggedIn">
+          Register
+        </ion-item>
         <ion-item nav-clear menu-close href="#/app/home/properties">
           Properties
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/destinations">
+          Our Locations
         </ion-item>
         <ion-item nav-clear menu-close href="#" ng-if="isUserLoggedIn" ng-click="logout()">
           Logout
@@ -33,9 +40,60 @@
         <ion-item nav-clear menu-close href="#/app/profile" ng-if="isUserLoggedIn">
           Profile
         </ion-item>
-<!--        <ion-item nav-clear menu-close href="#/app/editprofile"  ng-if="isUserLoggedIn">
-          Edit Profile
-        </ion-item>-->
+        <ion-item ng-click="_enableSubMenu()" nav-clear ng-if="!isUserLoggedIn" style='padding: 10px; background-color: #ccc;'>
+          Membership 
+          <i ng-if='!enableSubMenu' class="icon right-icon ion-chevron-down"></i>
+          <i ng-if='enableSubMenu' class="icon right-icon ion-chevron-up"></i>
+        </ion-item>
+        <div ng-if="enableSubMenu" class="sum-menu">
+          <ion-item nav-clear menu-close href="#/app/membership/2" ng-if="!isUserLoggedIn">
+            Register Now
+          </ion-item>
+          <ion-item nav-clear menu-close href="#/app/membership/2" ng-if="!isUserLoggedIn">
+            Book a Holiday
+          </ion-item>
+          <ion-item nav-clear menu-close href="#/app/membership/2" ng-if="!isUserLoggedIn">
+            Feedback
+          </ion-item>
+          <ion-item nav-clear menu-close href="#/app/membership/2" ng-if="!isUserLoggedIn">
+            Request
+          </ion-item>
+          <ion-item nav-clear menu-close href="#/app/membership/2" ng-if="!isUserLoggedIn">
+            Refer a Friend
+          </ion-item>
+          <ion-item nav-clear menu-close href="#/app/membership/2" ng-if="!isUserLoggedIn">
+            Post Holiday Feedback
+          </ion-item>
+          <ion-item nav-clear menu-close href="#/app/membership/2" ng-if="!isUserLoggedIn">
+            Seasons & Apartments
+          </ion-item>
+        </div>
+
+        <ion-item nav-clear menu-close href="#/app/contant-us">
+          Contact Us
+        </ion-item>
+        <ion-item ng-click="_enableSubMenu2()" nav-clear style='padding: 10px; background-color: #ccc;'>
+          Explore 
+          <i ng-if='!enableSubMenu2' class="icon right-icon ion-chevron-down"></i>
+          <i ng-if='enableSubMenu2' class="icon right-icon ion-chevron-up"></i>
+        </ion-item>
+        <div ng-if="enableSubMenu2" class="sum-menu">
+          <ion-item nav-clear menu-close href="#/app/cms/1/About Us">
+            About Us
+          </ion-item>
+          <ion-item nav-clear menu-close href="#/app/privacy">
+            Privacy Policy
+          </ion-item>
+          <ion-item nav-clear menu-close href="#/app/refundpolicy">
+            Refund Policy
+          </ion-item>
+          <ion-item nav-clear menu-close href="#/app/terms">
+            Terms of Use
+          </ion-item>
+          <ion-item nav-clear menu-close href="#/app/cms/5/Product & Services">
+            Product & Services
+          </ion-item>
+        </div>
       </ion-list>
     </ion-content>
   </ion-side-menu>

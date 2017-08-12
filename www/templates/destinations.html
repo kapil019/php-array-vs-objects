@@ -1,0 +1,123 @@
+<ion-view view-title="Destinations">
+  <ion-header-bar>
+    <h1 class="title">Destinations</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="col-md-12 col-sm-112 col-xs-12">
+      <div class="details-section">
+
+        <div class="list gem-list">
+          <div class="tabs tabs-top tab-day-selection" style="top:15px">
+            <a class="tab-item">
+              <div class="tab-item" ng-class="{'active':activeTab == 'location'}" ng-click="selectTab('location')">
+                <div class="schedule-day-">India's</div>
+              </div>
+            </a>
+            <a class="tab-item">
+              <div class="tab-item"  ng-class="{'active':activeTab == 'aminities'}" ng-click="selectTab('aminities')">
+                <div class="schedule-day-">Internationals</div>
+              </div>
+            </a>
+          </div>
+          <div class="destinations" style="clear: both; margin-top: 75px">
+            <div class="product-descriptions tab-content" ng-class="{'tab-show':activeTab == 'location'}">
+              <div id="home">
+                <ul>
+                  <li class="sd">Jim Corbett</li>
+                  <li class="sd">Varansi</li>
+                  <li class="sd">Pune</li>
+                  <li class="sd">Gaya</li>
+                  <li class="sd">Manesar</li>
+                  <li class="sd">Kolkata</li>
+                  <li class="sd">Nagpur</li>
+                  <li class="sd">Kanha(M.P)</li>
+                  <li class="sd">Surat</li>
+                  <li class="sd">Bandipur</li>
+                  <li class="sd">Ooty</li>
+                  <li class="sd">Bangalore</li>
+                  <li class="sd">Mysore</li>
+                  <li class="sd">Kasauli</li>
+                  <li class="sd">Dalhousie</li>
+                  <li class="sd">Dehradun</li>
+                  <li class="sd">Ranthambore</li>
+                  <li class="sd">Pushkar</li>
+                  <li class="sd">Mahabaleshwar</li>
+                  <li class="sd">Panchagani</li>
+                  <li class="sd">Coorg</li>
+                  <li class="sd">Bhopal</li>
+                  <li class="sd">Aurangabad</li>
+                  <li class="sd">Hyderabad</li>
+                  <li class="sd">Visakhapatnam</li>
+                  <li class="sd">Gwalior</li>
+                  <li class="sd">Gurgaon</li>
+                  <li class="sd">Jaipur</li>
+                  <li class="sd">Manali</li>
+                  <li class="sd">Shimla</li>
+                  <li class="sd">Mussoorie</li>
+                  <li class="sd">Rishikesh</li>
+                  <li class="sd">Auli</li>
+                  <li class="sd">Amritsar</li>
+                  <li class="sd">Goa</li>
+                  <li class="sd">Delhi</li>
+                  <li class="sd">Mumbai</li>
+                  <li class="sd">Lonavala</li>
+                  <li class="sd">Kovalam</li>
+                  <li class="sd">Haridwar</li>
+                  <li class="sd">Agra</li>
+                  <li class="sd">Kosi</li>
+                  <li class="sd">Ahmedabad</li>
+                  <li class="sd">Bhimtal</li>
+                  <li class="sd">Dharamshala</li>
+                  <li class="sd">Kumarakom</li>
+                  <li class="sd">Mathura</li>
+                  <li class="sd">Nanital</li>
+                  <li class="sd">Kausani</li>
+                  <li class="sd">Puri</li>
+                  <li class="sd">Katra</li>
+                  <li class="sd">Udaipur</li>
+                  <li class="sd">Jodhpur</li>
+                  <li class="sd">Cochin</li>
+                  <li class="sd">Munnar</li>
+                  <li class="sd">Shirdi</li>
+                  <li class="sd">Gangtok</li>
+                  <li class="sd">Darjeeling</li>
+                  <li class="sd">Ajmer</li>
+                  <li class="sd">Kodaikanal</li>
+                  <li class="sd">Chandigarh</li>
+
+                </ul>
+
+              </div>
+
+            </div>
+            <div class="product-descriptions tab-content" ng-class="{'tab-show':activeTab == 'aminities'}">
+              <div id="menu2" class="tab-pane">
+                <ul>
+                  <li class="sd">Paris</li>
+                  <li class="sd">Indonesia</li>
+                  <li class="sd">Malaysia</li>
+                  <li class="sd">Las Vegas</li>
+                  <li class="sd">Switzerland</li>
+                  <li class="sd">California</li>
+                  <li class="sd">Bali</li>
+                  <li class="sd">France</li>
+                  <li class="sd">San Francisco</li>
+                  <li class="sd">Scotland</li>
+                  <li class="sd">Orlando</li>
+                  <li class="sd">Los Angeles</li>
+                  <li class="sd">Dubai</li>
+                  <li class="sd">Singapore</li>
+                  <li class="sd">Australia</li>
+                  <li class="sd">Bangkok</li>
+                  <li class="sd">Nepal</li>
+                  <li class="sd">Bhutan</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+  </ion-content>
+</ion-view>
+
