@@ -41,19 +41,6 @@ p {color: #555;margin: 0 0 25px;}
 }
 /* Login
 ==================================*/
-.app-icon {
-  background-color: #fff;
-  background: url('../img/crown.jpg') center;
-  background-size: cover;
-  border-radius: 50%;
-  height: 125px;
-  margin: 0 auto;
-  width: 125px;
-}
-.social-login {
-  position: fixed;
-  bottom: 0;
-}
 /* Setup the default font App-wide */
 @font-face {
   font-family: 'OpenSans';
@@ -107,7 +94,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .gem-ion-content {color: #
 .gem-splash_background {background:#222224 url('../img/gemionic/background.jpg');}
 .gem-form {margin-bottom: 60px;}
 /*.gem-form .button {margin: 15px 5px;}*/
-.gem-form .item.item-input,  .gem-form .item.item-input .input-label, .gem-form .item {background: none;}
+.gem-form .item.item-input,  .gem-form .item.item-input .input-label, .gem-form .item {background: none;color: #fff;}
 .gem-bar-clear {background: none;}
 .gem-splash-logo { text-align: center; margin: 20% 0 0 0;}
 
@@ -276,7 +263,11 @@ label.item.item-input textarea {margin: 10px 0; border-radius: 5px;}
 .profile-feed .title {/*border-top:1px solid #ccc;*/ border-bottom:1px solid #ccc; position: relative; padding:10px 15px; }
 .profile-feed .title .gem-more-button {position: absolute; right: 10px; top: 10px;}
 /*Profile Edit*/
-.profile-separator-title, .separator-title {background: #e4e4e4; padding: 5px 15px;}
+.profile-separator-title, .separator-title {
+  /*background: #e4e4e4;*/ 
+  /*background: #8F94E6;*/ 
+  background: #C8C9E0; 
+                 padding: 5px 15px;}
 /*Gallery*/
 .gem-gallery {}
 .gem-gallery .thumb {}
@@ -333,7 +324,7 @@ label.item.item-input textarea {margin: 10px 0; border-radius: 5px;}
   font-weight: bold;
 }
 [nav-bar-transition="ios"] [nav-bar="active"] .bar, [nav-bar-transition="ios"] [nav-bar="entering"] .bar, .bar-header{
-  background: #00e9d5!important;
+  background: #01c6d9!important;
 }
 .bar-header .title, .button-clear.button-clear{
   color: #fff;
@@ -346,11 +337,13 @@ label.item.item-input textarea {margin: 10px 0; border-radius: 5px;}
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.36)!important;
 }
 ion-content .button{
+  vertical-align: middle;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.36)!important;
-  border: 1px rgb(84, 210, 178) solid!important;
+  border: 1px #23B0BD solid!important;
   height: 50px;
-  border-radius: 4px!important;
-  font-size: 12pt !important;
+  border-radius: 50px!important;
+  font-size: 13pt !important;
+  /*font-weight: bolder;*/
 }
 .slide-menu ion-item{
   background: #fff;
@@ -359,16 +352,19 @@ ion-content .button{
 }
 
 .button.button-positive, .button.button-balanced, .activated- {
-  background: #00e9d5!important;
-  border-color: rgb(54, 183, 150);
+  background: #01c6d9!important;
   box-shadow: none;
+  border: 4px solid #0a9ec7!important;
+  max-height: 48px;
 }
-.button.button-positive:hover, .button.button-balanced:hover, .button.button-positive.activated-, .button.button-balanced .activated-{
-  border-color: rgb(54, 183, 150);
-  border-radius: 0px;
+ion-view{
+  background: url("../img/slack-bg.jpg") no-repeat center top;
 }
 .gem-ion-content, .scroll-content{
-  background: #E0E0E0;
+  /*background: #E0E0E0;*/
+  /*background: rgba(81, 86, 165, 0.51);*/
+      background-color: rgba(243, 242, 242, 0.9);
+  color: #fff;
 }
 .bar-light .button.button-clear , .bar-light .button{
   color: #fff;
@@ -388,14 +384,13 @@ button input, select, textarea {
   margin-top: 4px;
 }
 textarea, input, select {
-  background: rgba(255, 255, 255, 0.7)!important;
+  background: #fff!important;
   color: #111!important;
-  border-radius: 4px!important;
+  border-radius: 50px!important;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.20)!important;
 }
 select {
   border: 0px;
-  border-radius: 2px;
   clear: both;
   width: 100%;
 }
@@ -404,8 +399,8 @@ select {
   color:rgb(54, 183, 150);
 }
 .toggle.toggle-balanced input:checked + .track {
-  border-color: #00e9d5!important;
-  background-color: #00e9d5!important;
+  border-color: #01c6d9!important;
+  background-color: #01c6d9!important;
 }
 .button-outline.button-outline {
   border-color: #b2b2b2;
@@ -424,7 +419,7 @@ select {
 .ion-edit, .ion-edit:after, .ion-edit:before, .ion-chevron-left-back:after, .ion-chevron-left-back:before{
   font-size: 22px!important;
 }
-.button {min-height: 40px; max-height: 40px;}
+.button {min-height: 42px; max-height: 42px;}
 .gem-form .item{border-width: 0px;}
 .gem-form-profile-edit {margin: 0px;}
 .input-label-new{font-size: 14px; color: #757272; margin-bottom: 5px;}
@@ -445,14 +440,6 @@ calendar-container {height:1000px;}
 .gem-form .item-input {padding: 5px 15px 5px 15px;}
 .gem-form input, .gem-form select, .gem-form textarea{padding-left:6px;}
 .action-sheet .button {background-color: rgba(251, 251, 251, 0.93);}
-.vendor-book-btn {border-radius: 0px;
-                  position: absolute;
-                  bottom: 0;
-                  right: 0;
-                  margin: 0px;
-                  width: 50%;
-                  float: left;
-}
 .cate-lv1 .cate-lv1-item {
   display: table;
   width: 100%;
@@ -477,50 +464,14 @@ calendar-container {height:1000px;}
   margin-bottom: 0;
 }
 .cate-lv1 .cate-lv1-item .item-wrapper {
-  background-color: rgba(25, 22, 22, 0.20);
+  background-color: rgba(25, 22, 22, 0.30);
 }
 .cate-lv1-list{
   margin: 0px!important; padding: 0px!important;
 }
 .bar.bar-positive {
-  border-color: #00e9d5!important;
+  border-color: #01c6d9!important;
 }
-.book-actions {
-  clear:both;
-  float: left;
-}
-.footer-actions {
-  width: 100%;
-  height: 40px;
-  border-radius: 0px;
-  border: 0px;
-  bottom: 0px;
-  color: #FFFEFE!important;
-  font-size: 16px;
-  background: transparent!important;
-  padding-left: 20px;
-}
-.footer-buttons {
-  width: 50%;
-  background: #00e9d5!important;
-}
-.date-input:before {
-  color: lightgrey;
-  content: attr(placeholder) !important;
-  margin-right: 0.5em;  
-}
-.calander-date{
-  border: 0px!important;
-  border-radius: 0px!important;
-  padding-left: 6px!important;
-  margin-right: 15px!important;
-  margin-top: 10px!important;
-}
-.bar-footer{
-  max-height: 40px;
-  overflow: hidden;
-}
-
 /**********************************************************************************************************************************************************************************************************************************************************************************/
 .nav-left {
   text-align: left;
@@ -612,7 +563,7 @@ calendar-container {height:1000px;}
 }
 .calendar-event-inner {
   overflow: hidden;
-  background-color: #00e9d5!important;
+  background-color: #01c6d9!important;
   color: white;
   height: 100%;
   width: 100%;
@@ -624,14 +575,14 @@ calendar-container {height:1000px;}
   height: 37px;
 }
 .monthview-primary-with-event {
-  background-color: #00e9d5!important;
+  background-color: #01c6d9!important;
   color: white;
 }
 .monthview-current {
   background-color: lightgrey;
 }
 .monthview-selected {
-  background-color: #00e9d5!important;
+  background-color: #01c6d9!important;
   color: white;
 }
 .monthview-eventdetail-timecolumn {
@@ -714,12 +665,35 @@ calendar-container {height:1000px;}
     font-size: 12px;
   }
 }
-.item-input select {height: 34px;}                                                                   
+.item .item-toggle .toggle {
+  margin-top: -9px;
+}
+.item .item-toggle {
+  background: #fff!important;
+  padding-top: 12px;
+  border-radius: 50px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.36)!important;
+  height: 42px!important;
+}
+.custom-buoon-2{
+  border: none;
+  padding: 4px 15px 4px 15px;
+  border-radius: 40px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.36)!important;
+}
+textarea {
+  padding-left: 12px!important;   
+}
+input, select{
+  height: 42px!important;
+  padding-left: 12px!important; 
+}
+.item-input select, .item .item-toggle {height: 34px; color: #ADADAD!important;}                                                                   
 .category-list .item-content{padding: 10px;}
 .category-list i{
   font-size: 20px!important;
   padding: 8px!important;
-  color: #00e9d5!important;
+  color: #01c6d9!important;
 }
 .slot-filter {width: 50%;}
 .modal .button-clear {
@@ -759,7 +733,7 @@ calendar-container {height:1000px;}
 .product-descriptions strong{
   font-weight: normal!important;
 }
-.profile-detail-table .item{
+.profile-detail-table .item, .profile-detail-table .item2{
   padding-top: 46px;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.36)!important;
   padding: 0px!important;
@@ -768,18 +742,44 @@ calendar-container {height:1000px;}
   background: #fff;
   border-radius: 3px;
 }
-.profile-detail-table .item th{
+.profile-detail-table .item2 {
+  height: 40px!important; 
+  margin-left: 0px;
+  color: #585555;
+}
+.payment-fail{
+  color: #C71212;
+}
+.profile-detail-table .item2 .left, .profile-detail-table .item2 .right {
+  float: left;
+  padding-top: 10px;
+  text-align: left;
+  padding-left: 8px;
+}
+.profile-detail-table .item2 .left{
+  width: 40%;
+}
+.profile-detail-table .item2 .right {
+  width: 60%;
+}
+.profile-detail-table .item th, .profile-detail-table .item1 th{
   font-weight:300;
   border-right: 1px solid #ccc;
   width: 150px;
 }
-.profile-detail-table .item th, .profile-detail-table .item td {
+.profile-detail-table .item2 td{
+  text-align: left;
+}
+.profile-detail-table .item th, .profile-detail-table .item2 th, .profile-detail-table .item td, .profile-detail-table .item2 td {
   vertical-align: middle;
   padding-left: 10px;
   height: 48px;
 }
 .bar.bar-header .button+.title {
-  left: 10px;
+  left: 10px; font-size: 18px;
+}
+.bar .button.button-icon .icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before, .bar .button.button-icon:before{
+  font-size: 30px;
 }
 .button-clear, .button-fab, .button-flat, .button-raised, .ink, .popup .button {
   padding: 0px;
@@ -794,14 +794,14 @@ calendar-container {height:1000px;}
   margin: 0 0 5px;
 }
 .cms-text div, .list h3 {
-  color:rgb(84, 82, 82)
+  /*color:#fff;*/
 }
 .card {
   margin: 15px;
 }
-.row-slider{
+/*.row-slider{
   margin-bottom: 15px;
-}
+}*/
 .destinations li{
   padding: 10px;
   border-bottom: 1px solid#ccc;
@@ -827,3 +827,14 @@ ion-item .right-icon{
 .ion-android-more-vertical{
   display: block!important;
 }
+.page-bottom{height: 60px;}
+.property-left-filter, .property-right-filter{width: 50%; float: left; padding: 5px;}
+.destinations li {
+  background: #01c6d9;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+}
+textarea{border-radius: 20px!important;}
+.product-descriptions2 p{color: #fff}
+.card, .cms-text{color: #929090}

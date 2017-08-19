@@ -1,0 +1,37 @@
+<ion-view view-title="Payment {{txnData.payment_status}}">
+  <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in has-header gem-ion-content feed">
+    <div class="cate-lv1" style="text-align: center;">     
+      <div style="margin-top: 40px">
+        <i class="icon ion-checkmark" ng-if="txnData.payment_status && txnData.payment_status == 'success'" style="font-size: 124px; margin-top: 150px!important;"></i>       
+        <i class="icon ion-close payment-fail" ng-if="!txnData.payment_status || txnData.payment_status != 'success'" style="font-size: 124px; margin-top: 150px!important;"></i>       
+      </div>
+      <p ng-if="txnData.payment_status && txnData.payment_status == 'success'" style="margin: 10px;">
+        Your Payment has been received successfully. And your transaction number is #{{txnData.pgResp.mihpayid}}
+      </p>
+      <p ng-if="!txnData.payment_status || txnData.payment_status != 'success'"  style="margin: 10px;">
+        {{txnData.pgResp.error_Message}}
+      </p>
+      <p></p>
+      <div class="profile-separator-title"><i class="ion-gear-a"></i> Transaction Details</div> 
+      <div ng-if="txnData && txnData !== null" style="margin: 10px;" class="profile-detail-table">
+          <div class="item2">
+            <div class="left">Name</div>
+            <div class="right">{{txnData.firstname}}</div>
+          </div>
+          <div class="item2">
+            <div class="left">Mobile No</div>
+            <div class="right">{{txnData.phone}}</div>
+          </div>
+          <div class="item2">
+            <div class="left">Email</div>
+            <div class="right">{{txnData.email}}</div>
+          </div>
+          <div class="item2">
+            <div class="left">Amount</div>
+            <div class="right">INR {{txnData.amount}}</div>
+          </div>
+      </div>
+      <a ui-sref="app.home" style="color: #43AD92!important; text-decoration: none;font-size: 18px;"> Go to Home </a>
+    </div>    
+  </ion-content>
+</ion-view>

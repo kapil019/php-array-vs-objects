@@ -1,0 +1,112 @@
+<ion-view view-title="Book a Holiday">
+  <div class="modal-">
+    <ion-content>
+      <form ng-submit="doSignup()" class="gem-form" style="margin-top: 10px;">
+
+        <div class="card cms-text" style="padding: 10px;">
+          Booking a country holiday is fairly easy! All you need to do, is punch in your details right here and we'll get back to you with an offer you simply can't resist! What are you waiting for? Kick-start your vacations right here!
+        </div>
+        <div class="list">
+          <label class="item item-input">
+            <ion-toggle class="no-border transparent-bg" ng-model="signupData.isMember" toggle-class="toggle-balanced" style='    background: #F6F6F6;'>
+              Member
+            </ion-toggle>
+          </label>
+          <div ng-if='!signupData.isMember'>
+            <label class="item item-input">
+              <select name="sirname" ng-model="signupData.sirName">
+                <option value="Mr">Mr</option>
+                <option value="Ms">Ms</option>
+                <option value="Mrs">Mrs</option>
+              </select>
+            </label>
+            <label class="item item-input">
+              <input type="text" ng-model="signupData.name" placeholder="Name">
+            </label>
+            <label class="item item-input">
+              <input type="text" ng-model="signupData.email" placeholder="Email">
+            </label>
+            <label class="item item-input">
+              <input type="number" ng-model="signupData.phone" placeholder="Phone" maxlength="10">
+            </label>
+          </div>
+          <label class="item item-input" ng-if='signupData.isMember'>
+            <input type="text" ng-model="signupData.membershipId" placeholder="Membership Id">
+          </label>
+          <label class="item item-input">
+            <select name="" ng-model="signupData.nightOfUtilise">
+              <option value="">Nights to Utilise</option>
+              <option value="{{i}}" ng-repeat="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">{{i}}</option>
+            </select>
+          </label>
+
+        </div>
+        <div class="profile-separator-title"><i class="ion-gear-a"></i> Option 1</div> 
+        <label class="item item-input">
+          <input type="text" ng-model="signupData.option1CheckIn" placeholder="Check In">
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="signupData.option1CheckOut" placeholder="Check Out">
+        </label>
+        <div class="profile-separator-title"><i class="ion-gear-a"></i> Option 2</div> 
+        <label class="item item-input">
+          <input type="text" ng-model="signupData.option2CheckIn" placeholder="Check In">
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="signupData.option2CheckOut" placeholder="Check Out">
+        </label>
+        <div class="profile-separator-title"><i class="ion-gear-a"></i> Option 3</div> 
+        <label class="item item-input">
+          <input type="text" ng-model="signupData.option3CheckIn" placeholder="Check In">
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="signupData.option3CheckOut" placeholder="Check Out">
+        </label>
+
+        <div class="profile-separator-title"><i class="ion-gear-a"></i> Destination</div> 
+        <label class="item item-input item-stacked-label">
+          <select name="" ng-model="signupData.location1">
+            <option value="">Location 1</option>
+            <option value="{{i.tlb_cms_title}}" ng-repeat="i in cmsData">{{i.tlb_cms_title}}</option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <select name="" ng-model="signupData.location2">
+            <option value="">Location 2</option>
+            <option value="{{i.tlb_cms_title}}" ng-repeat="i in cmsData">{{i.tlb_cms_title}}</option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <select name="" ng-model="signupData.location3">
+            <option value="">Location 3</option>
+            <option value="{{i.tlb_cms_title}}" ng-repeat="i in cmsData">{{i.tlb_cms_title}}</option>
+          </select>
+        </label>
+
+        <div class="profile-separator-title"><i class="ion-gear-a"></i> PAX COUNT</div> 
+        <label class="item item-input item-stacked-label">
+          <select name="" ng-model="signupData.adults">
+            <option value="">Adults</option>
+            <option value="{{i}}" ng-repeat="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]">{{i}}</option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <select name="" ng-model="signupData.minors">
+            <option value="">Children below 12 years</option>
+            <option value="{{i}}" ng-repeat="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]">{{i}}</option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <ion-toggle class="no-border transparent-bg" ng-model="signupData.travelSupport" toggle-class="toggle-balanced" style='    background: #F6F6F6;'>
+            Require travel support
+          </ion-toggle>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Submit</button>
+        </label>
+      </form>
+      <div class="page-bottom"></div>
+    </ion-content>
+  </div>
+</ion-view>
+

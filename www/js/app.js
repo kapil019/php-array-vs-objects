@@ -40,6 +40,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }, 2000);
       }
     });
+    
+    $ionicPlatform.registerBackButtonAction(function () {
+//      if (condition) {
+        navigator.app.exitApp();
+//      } else {
+//        handle back action!
+//      }
+    }, 100);
   })
 
   .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
@@ -86,7 +94,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         views: {
           'menuContent': {
             templateUrl: "templates/properties.html",
-            controller: 'HomeCtrl'
+            controller: 'PropertiesCtrl'
           }
         }
       })
@@ -100,13 +108,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           }
         }
       })
-      .state('app.booking-success', {
-        url: "/success/:bookingId",
+      .state('app.payment-callback', {
+        url: "/payment-callback/:txnId",
         cache: false,
         views: {
           'menuContent': {
-            templateUrl: "templates/app/booking_success.html",
-            controller: 'BookingSuccessCtrl'
+            templateUrl: "templates/app/payment-callback.html",
+            controller: 'PaymentCallbackCtrl'
+          }
+        }
+      })
+      .state('app.forgot', {
+        url: '/forgot',
+        cache: false,
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/forgot.html',
+            controller: 'ForgotCtrl'
+          }
+        }
+      })
+      .state('app.change-pwd', {
+        url: '/change-pwd',
+        cache: false,
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/change-pwd.html',
+            controller: 'ChangePwdCtrl'
           }
         }
       })
@@ -123,19 +151,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       .state('app.privacy', {
         url: "/privacy",
         views: {
-          'menuContent': { templateUrl: 'templates/privacy.html'}
+          'menuContent': {templateUrl: 'templates/privacy.html'}
         }
       })
       .state('app.terms', {
         url: "/terms",
         views: {
-          'menuContent': { templateUrl: 'templates/terms.html'}
+          'menuContent': {templateUrl: 'templates/terms.html'}
         }
       })
       .state('app.refundpolicy', {
         url: "/refundpolicy",
         views: {
-          'menuContent': { templateUrl: 'templates/refundpolicy.html'}
+          'menuContent': {templateUrl: 'templates/refundpolicy.html'}
         }
       })
 
@@ -166,6 +194,69 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           }
         }
       })
+      .state('app.appartments', {
+        url: '/appartments',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/appartments.html',
+            controller: 'AppartmentsCtrl'
+          }
+        }
+      })
+      .state('app.refer', {
+        url: '/refer',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/refer.html',
+            controller: 'ReferCtrl'
+          }
+        }
+      })
+      .state('app.payment', {
+        url: '/payment',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/payment.html',
+            controller: 'PaymentCtrl'
+          }
+        }
+      })
+      .state('app.feedback', {
+        url: '/feedback',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/feedback.html',
+            controller: 'FeedBackCtrl'
+          }
+        }
+      })
+      .state('app.holidayfeedback', {
+        url: '/holidayfeedback',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/holidayfeedback.html',
+            controller: 'HolidayFeedBackCtrl'
+          }
+        }
+      })
+      .state('app.request', {
+        url: '/request',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/request.html',
+            controller: 'RequestCtrl'
+          }
+        }
+      })
+      .state('app.bookholiday', {
+        url: '/bookholiday',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/bookholiday.html',
+            controller: 'BookHolidayCtrl'
+          }
+        }
+      })
       .state('app.membership', {
         url: '/membership/:cmsId',
         cache: true,
@@ -176,7 +267,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           }
         }
       })
-      
+
       .state('app.contant-us', {
         url: '/contant-us',
         cache: true,
@@ -187,7 +278,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           }
         }
       })
-
       .state('app.profile', {
         url: '/profile',
         views: {
@@ -196,13 +286,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             controller: 'ProfileCtrl'
           }
         }
+      })
+      .state('app.holidays', {
+        url: '/holidays',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/holidays.html',
+            controller: 'HolidaysCtrl'
+          }
+        }
       });
     $urlRouterProvider.otherwise('/app/home');
   }).filter('stripStrong', function () {
   return function (str) {
-    str = str.replace(/<strong>/, '').replace(/<\/strong>/, '').replace(/<b>/, '').replace(/<\/b>/, '');
-    var _string = str.split("<p>&nbsp;</p>").join('').replace(/<\/strong>/, '').replace(/<b>/, '').replace(/<\/b>/, '');
-    return _string;
+    if (str && str != null && str !== "") {
+      str = str.replace(/<strong>/, '').replace(/<\/strong>/, '').replace(/<b>/, '').replace(/<\/b>/, '');
+      var _string = str.split("<p>&nbsp;</p>").join('').replace(/<\/strong>/, '').replace(/<b>/, '').replace(/<\/b>/, '');
+      _string = _string.split("<p><br /> <br /></p>").join('<br />').replace(/<\/strong>/, '').replace(/<b>/, '').replace(/<\/b>/, '');
+      return _string;
+    } else {
+      return "";
+    }
   };
 });
 
@@ -215,8 +319,6 @@ angular.module('starter.config', [])
   .constant('CONFIG', {
     imageUrl: 'http://www.countryholidaysinnsuites.com/admin/upload/',
     apiKey: '341542grfyt345325326',
-//    apiUrl: 'http://demo.incaendo.com/kapil/country-holiday/api/rest/api/src/v1/',
-//    apiUrl: 'http://www.countryholidaysinnsuites.com/rest/api/v1/index.php/',
     apiUrl: appUrl,
     validators: {
       email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -226,3 +328,34 @@ angular.module('starter.config', [])
     days: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
   }
 );
+
+
+var timer = null;
+
+// Global InAppBrowser reference
+var iabRef = null;
+
+// device APIs are available
+var txnId = null;
+
+
+function onDeviceReadyTest(_txnId) {
+  txnId = _txnId;
+  var url = appUrl + 'getTxnDetails?txnid=' + _txnId + '&pay=true';
+  iabRef = window.open(url, '_blank', 'location=no');
+
+  iabRef.paymentCallback = function(txnId) {
+    window.location.hash = '/app/payment-callback/' + txnId;
+  };
+  
+  iabRef.addEventListener('loadstop', function(event) {
+    if (event.url.match("/paymentCallback")) {      
+      iabRef.close();
+      window.location.hash = '/app/payment-callback/' + txnId;
+    }
+  });
+
+//  iabRef.onbeforeunload = function() {
+//    window.location.hash = '/app/payment-callback/' + txnId;
+//  };
+}

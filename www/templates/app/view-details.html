@@ -2,11 +2,17 @@
   <ion-content class="gem-ion-content single-post">
     <div class="row-slider">
       <div class="col-slider">
-        <ion-slide-box auto-play="true" does-continue="true" slide-interval="5000" style="height: 150px;">
+        <div class="list card-" ng-if='!product.images' style=" background-color: #ccc; height: 160px;">
+          <div class="item item-image" style="background-color: #ccc; background: url({{imageUrl}}{{product.tlb_image}}) no-repeat; height: 150px; background-size: cover;" on-finish="onFinishRemoteSecond" on-start="onStartRemoteSecond" on-progress="onProgressRemoteSecond">
+            <div class="isicontent" style="text-align: center;margin-top: 60px; font-size: 24px; color: #DED7D7; opacity: 0.4">
+              Country Holidays Inn & Suites
+            </div>
+          </div>
+        </div>
+        <ion-slide-box auto-play="true" ng-if='product.images' does-continue="true" slide-interval="5000" style="height: 150px;">
           <ion-slide ng-repeat="image in product.images">
-            <div class="list card" style=" background-color: #ccc;">
+            <div class="list card-" style=" background-color: #ccc; height: 160px;">
               <div class="item item-image" style="background-color: #ccc; background: url({{imageUrl}}{{image}}) no-repeat; height: 150px; background-size: cover;" on-finish="onFinishRemoteSecond" on-start="onStartRemoteSecond" on-progress="onProgressRemoteSecond">
-                <!--<img class="slider-image fluid-image" onerror="this.src=''" on-finish="onFinishRemoteSecond" on-start="onStartRemoteSecond" on-progress="onProgressRemoteSecond" cache-src="{{imageUrl}}{{image}}" src="{{imageUrl}}{{image}}" style="height: 140px; background-color: #ccc;">-->
                 <div class="isicontent" style="text-align: center;margin-top: 60px; font-size: 24px; color: #DED7D7; opacity: 0.4">
                   Country Holidays Inn & Suites
                 </div>
@@ -43,8 +49,8 @@
           </a>
         </div>
         <div style="clear: both; margin-top: 70px">
-          <div class="product-descriptions tab-content" ng-class="{'tab-show':activeTab == 'location'}" ng-bind-html="product.phighlight | stripStrong"></div>
-          <div class="product-descriptions tab-content" ng-class="{'tab-show':activeTab == 'aminities'}" ng-bind-html="product.aminities | stripStrong"></div>
+          <div class="product-descriptions tab-content product-descriptions2" ng-class="{'tab-show':activeTab == 'location'}" ng-bind-html="product.phighlight | stripStrong"></div>
+          <div class="product-descriptions tab-content product-descriptions2" ng-class="{'tab-show':activeTab == 'aminities'}" ng-bind-html="product.aminities | stripStrong"></div>
         </div>
       </div>
     </div>

@@ -1,0 +1,27 @@
+<ion-view view-title="Seasons & Apartments">
+  <ion-content>
+    <h3 class="item item-input profile-separator-title" style="font-size: 16px; margin-top: 15px;">
+      Apartment types
+    </h3>
+    <div class="list card cms-text" ng-repeat="data in cmsData.appartments">
+      <div class="profile-separator-title" style="font-weight:bold;">{{data.tlb_cms_title}}</div> 
+      <div class="cms-text" style="margin: 10px;">
+        <div class="item item-image" style="background-color: #ccc; background: url({{imageUrl}}{{data.tlb_cms_url}}) no-repeat; height: 150px; background-size: cover;"></div>
+        <p ng-bind-html="data.tlb_cms_text | stripStrong"></p>
+      </div>
+    </div>
+    <h3 class="item item-input profile-separator-title" style="font-size: 16px;">
+      Download Holiday Conversion Chart
+    </h3>
+    <div class="list card cms-text" ng-repeat="data in cmsData.seasons">
+      <div class="profile-separator-title" style="font-weight:bold;">{{data.tlb_cms_title}}</div> 
+      <div class="cms-text" style="margin: 10px;">
+        <div class="item item-image" style="background-color: #ccc; background: url({{imageUrl}}{{data.tlb_cms_url}}) no-repeat; height: 150px; background-size: cover;"></div>
+        <p ng-bind-html="data.tlb_cms_text | stripStrong"></p>
+      </div>
+    </div>
+
+    <div class="page-bottom"></div>
+  </ion-content>
+</ion-view>
+

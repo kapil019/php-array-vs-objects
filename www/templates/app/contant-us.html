@@ -1,15 +1,11 @@
 <ion-view view-title="Contact Us">
   <div class="modal-">
     <ion-content>
-        <img src="http://www.countryholidaysinnsuites.com/images/contactus.png" style="width:100%"/>
+      <img src="http://www.countryholidaysinnsuites.com/images/contactus.png" style="width:100%"/>
       <form ng-submit="doSignup()" class="gem-form" style="margin-top: 10px;">
-        <div class="list card cms-text" style="padding: 15px; margin: 15px;">
-          <div style="font-size: 18px; padding-bottom: 20px;" ng-bind-html="cmsData.tlb_cms_title" ng-if='cmsData.tlb_cms_title && cmsData.tlb_cms_title != null'></div>
-          <div ng-bind-html="cmsData.tlb_cms_text | stripStrong" ng-if='cmsData.tlb_cms_text && cmsData.tlb_cms_text != null'></div>
-        </div>
-        <div class="list card cms-text" style="padding: 15px; margin: 15px;">
-          <div style="font-size: 18px; padding-bottom: 20px;" ng-bind-html="cmsData2.tlb_cms_title" ng-if='cmsData2.tlb_cms_title && cmsData2.tlb_cms_title != null'></div>
-          <div ng-bind-html="cmsData2.tlb_cms_text | stripStrong" ng-if='cmsData2.tlb_cms_text && cmsData2.tlb_cms_text != null'></div>
+        <div class="list card cms-text" style="padding: 15px; margin: 15px;" ng-repeat="cms in cmsData">
+          <div style="font-size: 18px; padding-bottom: 20px;" ng-bind-html="cms.tlb_cms_title" ng-if='cms.tlb_cms_title && cms.tlb_cms_title != null'></div>
+          <div ng-bind-html="cms.tlb_cms_text | stripStrong" ng-if='cms.tlb_cms_text && cms.tlb_cms_text != null'></div>
         </div>
         <div class="list">
           <h3 class="item item-input" style="font-size: 16px;">
@@ -22,7 +18,7 @@
             <input type="email" ng-model="signupData.email" placeholder="Email">
           </label>
           <label class="item item-input">
-            <input type="number" ng-model="signupData.phone" placeholder="Phone">
+            <input type="number" ng-model="signupData.phone" placeholder="Phone" maxlength="10">
           </label>
           <label class="item item-input">
             <input type="text" ng-model="signupData.subject" placeholder="Subject">
@@ -35,6 +31,7 @@
           </label>
         </div>
       </form>
+      <div class="page-bottom"></div>
     </ion-content>
   </div>
 </ion-view>

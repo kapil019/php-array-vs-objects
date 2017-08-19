@@ -1,0 +1,23 @@
+<ion-view view-title="Change password">
+  <div class="modal-">
+    <ion-content>
+      <form class="gem-form" style="margin-top: 50px;">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <input type="password" ng-model="recoverData.old" placeholder="Old Password">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <input type="password" ng-model="recoverData.new" placeholder="New Password">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <input type="password" ng-model="recoverData.repeat" placeholder="Repeat Password">
+          </label>
+          <label class="item">
+            <button class="button button-block button-positive " type="button" ng-click="tryForgot()">Reset password</button>
+          </label>
+        </div>
+      </form>
+    </ion-content>
+  </div>
+</ion-view>
+

@@ -1,0 +1,50 @@
+<ion-view view-title="Holiday Feedback">
+  <div class="modal-">
+    <ion-content>
+      <form ng-submit="doSignup()" class="gem-form" style="margin-top: 10px;">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.membershipId" placeholder="Membership Id">
+          </label>
+          <label class="item item-input">
+            <select name="sirname" ng-model="signupData.sirName">
+              <option value="Mr">Mr</option>
+              <option value="Ms">Ms</option>
+              <option value="Mrs">Mrs</option>
+            </select>
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.name" placeholder="Name">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.email" placeholder="Email">
+          </label>
+          <label class="item item-input">
+            <input type="number" ng-model="signupData.phone" placeholder="Phone" maxlength="10">
+          </label>
+          <div class="profile-separator-title"><i class="ion-gear-a"></i> Which hotel/resort did you stay at?</div> 
+          <label class="item item-input">
+            <select ng-model="signupData.hotel">
+              <option value="">Select Hotel/Resort</option>
+              <option value="{{hotel}}" ng-repeat="hotel in hotells">{{hotel}}</option>
+            </select>
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.scheme" placeholder="Scheme" maxlength="10">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.checkIn" placeholder="Check In" maxlength="10">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.checkOut" placeholder="Check Out" maxlength="10">
+          </label>
+          <label class="item">
+            <button class="button button-block button-positive" type="submit">Submit</button>
+          </label>
+        </div>
+      </form>
+      <div class="page-bottom"></div>
+    </ion-content>
+  </div>
+</ion-view>
+

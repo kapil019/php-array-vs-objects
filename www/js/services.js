@@ -24,6 +24,31 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
       });
       return defer.promise;
     },
+    forgotPassword: function ($data) {
+      $log.log("geting user details");
+      var defer = $q.defer();
+      $http.post(CONFIG.apiUrl + "forgotPassword?api_key=" + CONFIG.apiKey).success(function (resp) {
+        $log.log(resp);
+        defer.resolve(resp);
+      }).error(function () {
+        $ionicLoading.hide();
+        $log.error("Error in forgotPassword detais api.");
+      });
+      return defer.promise;
+    },
+    createOrder: function ($request) {
+      $log.log("Login api request data");
+      $log.log($request);
+      var defer = $q.defer();
+      $http.post(CONFIG.apiUrl + "createOrder?api_key=" + CONFIG.apiKey, $request).success(function (resp) {
+        $log.log(resp);
+        defer.resolve(resp);
+      }).error(function () {
+        $ionicLoading.hide();
+        $log.error("Error in createOrder api.");
+      });
+      return defer.promise;
+    },
     logout: function ($request) {
       $log.log("Logout api request data");
       $log.log($request);
@@ -48,6 +73,17 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
       });
       return defer.promise;
     },
+    sendEmail: function ($request) {
+      var defer = $q.defer();
+      $http.post(CONFIG.apiUrl + "sendemail?api_key=" + CONFIG.apiKey, $request).success(function (resp) {
+        $log.log(resp);
+        defer.resolve(resp);
+      }).error(function () {
+        $ionicLoading.hide();
+        $log.error("Error in sendEmail api.");
+      });
+      return defer.promise;
+    },
     getStateList: function () {
       var defer = $q.defer();
       $http.get(CONFIG.apiUrl + "booking/states?api_key=" + CONFIG.apiKey).success(function (resp) {
@@ -56,6 +92,17 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
       }).error(function () {
         $ionicLoading.hide();
         $log.error("Error in get state list api.");
+      });
+      return defer.promise;
+    },
+    getTxnDetails: function (txnId) {
+      var defer = $q.defer();
+      $http.get(CONFIG.apiUrl + "getTxnDetails?txnid=" + txnId + "&api_key=" + CONFIG.apiKey).success(function (resp) {
+        $log.log(resp);
+        defer.resolve(resp);
+      }).error(function () {
+        $ionicLoading.hide();
+        $log.error("Error in getTxnDetails api.");
       });
       return defer.promise;
     },
@@ -76,10 +123,45 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
         $log.log(resp);
         defer.resolve(resp);
       }).error(function () {
-        var resp = {"status": "200", "body": {"data": {"id": "7", "token": "nnZYoknc", "email": "test2@test.com", "password": "9810fdc1f26d399e7575f826c845fcde60424198", "first_name": "testhanu", "last_name": "hanuLast", "phone": "12345689", "city_id": "1", "state_id": "1", "pincode": "110045", "address": "test address", "latitude": "12345.55", "longitude": "2345.66", "status": "1", "group_id": "2", "category_id": "1", "dob": "0000-00-00", "newsleter": "Y", "about_me": "This is test about me", "profile_image": "1.jpg", "cover_image": "2.png", "device_id": "e345rtt66", "device_platform": "android", "creation_date": "2016-12-24 11:22:41", "last_login": "2016-12-24 11:22:41", "is_active": true}, "code": 0}};
-        defer.resolve(resp);
+        defer.resolve(false);
         $ionicLoading.hide();
         $log.error("Error in get profile api.");
+      });
+      return defer.promise;
+    },
+    getCmsData: function (key) {
+      var defer = $q.defer();
+      $http.get(CONFIG.apiUrl + "cms/1?cms_key=" + key + "&api_key=" + CONFIG.apiKey).success(function (resp) {
+        $log.log(resp);
+        defer.resolve(resp);
+      }).error(function () {
+        defer.resolve(false);
+        $ionicLoading.hide();
+        $log.error("Error in get profile api.");
+      });
+      return defer.promise;
+    },
+    getAppartments: function () {
+      var defer = $q.defer();
+      $http.get(CONFIG.apiUrl + "appartments?api_key=" + CONFIG.apiKey).success(function (resp) {
+        $log.log(resp);
+        defer.resolve(resp);
+      }).error(function () {
+        defer.resolve(false);
+        $ionicLoading.hide();
+        $log.error("Error in get appartments api.");
+      });
+      return defer.promise;
+    },
+    getHolidays: function (email) {
+      var defer = $q.defer();
+      $http.get(CONFIG.apiUrl + "holidays?email=" + email + "&api_key=" + CONFIG.apiKey).success(function (resp) {
+        $log.log(resp);
+        defer.resolve(resp);
+      }).error(function () {
+        defer.resolve(false);
+        $ionicLoading.hide();
+        $log.error("Error in get getHolidays api.");
       });
       return defer.promise;
     },
@@ -129,7 +211,7 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
     },
     changePassword: function ($params) {
       var defer = $q.defer();
-      $http.post(CONFIG.apiUrl + "booking/changePassword?api_key=" + CONFIG.apiKey, $params).success(function (resp) {
+      $http.post(CONFIG.apiUrl + "changePassword?api_key=" + CONFIG.apiKey, $params).success(function (resp) {
         $log.log(resp);
         defer.resolve(resp);
       }).error(function () {
@@ -140,343 +222,11 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
     },
     searchVendors: function ($params) {
       var defer = $q.defer();
-      $http.get(CONFIG.apiUrl + "booking/searchSeats?category_id="
-//        + "&longitude=" + $params.longitude
-//        + "&latitude=" + $params.latitude
-//        + "&range=" + $params.range.value
-//        + "&schedule=" + $params.schedule.value
-        + "&page=" + $params.page
-//        + "&datefor=" + $params.datefor.getFullYear() + "-" + ($params.datefor.getMonth() + 1) + "-" + $params.datefor.getDate()
-        + "&api_key=" + CONFIG.apiKey, $params).success(function (resp) {
-
-        var data = {
-          status: "200",
-          body: {
-            data: [
-              {
-                id: "7",
-                token: "PIXo7pSh",
-                email: "test2@test.com",
-                password: "9810fdc1f26d399e7575f826c845fcde60424198",
-                first_name: "testhanu",
-                last_name: "hanuLast",
-                phone: "12345689",
-                city_id: "1",
-                state_id: "1",
-                pincode: "110045",
-                address: "test address",
-                latitude: "12345.55",
-                longitude: "2345.66",
-                status: "1",
-                group_id: "2",
-                category_id: "1",
-                dob: "0000-00-00",
-                newsleter: "Y",
-                about_me: "This is test about me",
-                profile_image: "1.jpg",
-                cover_image: "2.png",
-                device_id: "e345rtt66",
-                device_platform: "android",
-                creation_date: "2016-12-24 11:22:41",
-                last_login: "2016-12-24 11:22:41",
-                is_active: true,
-                schedule: "12-13",
-                TotalSeats: "4",
-                TotalBookSeats: "0",
-                TotalRemainSeats: "-28",
-                VendorDistance: "4831.82"
-              }, {
-                id: "7",
-                token: "PIXo7pSh",
-                email: "test2@test.com",
-                password: "9810fdc1f26d399e7575f826c845fcde60424198",
-                first_name: "testhanu",
-                last_name: "hanuLast",
-                phone: "12345689",
-                city_id: "1",
-                state_id: "1",
-                pincode: "110045",
-                address: "test address",
-                latitude: "12345.55",
-                longitude: "2345.66",
-                status: "1",
-                group_id: "2",
-                category_id: "1",
-                dob: "0000-00-00",
-                newsleter: "Y",
-                about_me: "This is test about me",
-                profile_image: "act13.jpg",
-                cover_image: "2.png",
-                device_id: "e345rtt66",
-                device_platform: "android",
-                creation_date: "2016-12-24 11:22:41",
-                last_login: "2016-12-24 11:22:41",
-                is_active: true,
-                schedule: "12-13",
-                TotalSeats: "4",
-                TotalBookSeats: "0",
-                TotalRemainSeats: "-28",
-                VendorDistance: "4831.82"
-              }, {
-                id: "7",
-                token: "PIXo7pSh",
-                email: "test2@test.com",
-                password: "9810fdc1f26d399e7575f826c845fcde60424198",
-                first_name: "testhanu",
-                last_name: "hanuLast",
-                phone: "12345689",
-                city_id: "1",
-                state_id: "1",
-                pincode: "110045",
-                address: "test address",
-                latitude: "12345.55",
-                longitude: "2345.66",
-                status: "1",
-                group_id: "2",
-                category_id: "1",
-                dob: "0000-00-00",
-                newsleter: "Y",
-                about_me: "This is test about me",
-                profile_image: "1.jpg",
-                cover_image: "2.png",
-                device_id: "e345rtt66",
-                device_platform: "android",
-                creation_date: "2016-12-24 11:22:41",
-                last_login: "2016-12-24 11:22:41",
-                is_active: true,
-                schedule: "12-13",
-                TotalSeats: "4",
-                TotalBookSeats: "0",
-                TotalRemainSeats: "-28",
-                VendorDistance: "4831.82"
-              }
-            ],
-            code: 0
-          }
-        };
-
-        defer.resolve(data);
-        var data = {
-          status: "200",
-          body: {
-            data: [
-              {
-                id: "7",
-                token: "PIXo7pSh",
-                email: "test2@test.com",
-                password: "9810fdc1f26d399e7575f826c845fcde60424198",
-                first_name: "testhanu",
-                last_name: "hanuLast",
-                phone: "12345689",
-                city_id: "1",
-                state_id: "1",
-                pincode: "110045",
-                address: "test address",
-                latitude: "12345.55",
-                longitude: "2345.66",
-                status: "1",
-                group_id: "2",
-                category_id: "1",
-                dob: "0000-00-00",
-                newsleter: "Y",
-                about_me: "This is test about me",
-                profile_image: "1.jpg",
-                cover_image: "2.png",
-                device_id: "e345rtt66",
-                device_platform: "android",
-                creation_date: "2016-12-24 11:22:41",
-                last_login: "2016-12-24 11:22:41",
-                is_active: true,
-                schedule: "12-13",
-                TotalSeats: "4",
-                TotalBookSeats: "0",
-                TotalRemainSeats: "-28",
-                VendorDistance: "4831.82"
-              }, {
-                id: "7",
-                token: "PIXo7pSh",
-                email: "test2@test.com",
-                password: "9810fdc1f26d399e7575f826c845fcde60424198",
-                first_name: "testhanu",
-                last_name: "hanuLast",
-                phone: "12345689",
-                city_id: "1",
-                state_id: "1",
-                pincode: "110045",
-                address: "test address",
-                latitude: "12345.55",
-                longitude: "2345.66",
-                status: "1",
-                group_id: "2",
-                category_id: "1",
-                dob: "0000-00-00",
-                newsleter: "Y",
-                about_me: "This is test about me",
-                profile_image: "1.jpg",
-                cover_image: "2.png",
-                device_id: "e345rtt66",
-                device_platform: "android",
-                creation_date: "2016-12-24 11:22:41",
-                last_login: "2016-12-24 11:22:41",
-                is_active: true,
-                schedule: "12-13",
-                TotalSeats: "4",
-                TotalBookSeats: "0",
-                TotalRemainSeats: "-28",
-                VendorDistance: "4831.82"
-              }, {
-                id: "7",
-                token: "PIXo7pSh",
-                email: "test2@test.com",
-                password: "9810fdc1f26d399e7575f826c845fcde60424198",
-                first_name: "testhanu",
-                last_name: "hanuLast",
-                phone: "12345689",
-                city_id: "1",
-                state_id: "1",
-                pincode: "110045",
-                address: "test address",
-                latitude: "12345.55",
-                longitude: "2345.66",
-                status: "1",
-                group_id: "2",
-                category_id: "1",
-                dob: "0000-00-00",
-                newsleter: "Y",
-                about_me: "This is test about me",
-                profile_image: "1.jpg",
-                cover_image: "2.png",
-                device_id: "e345rtt66",
-                device_platform: "android",
-                creation_date: "2016-12-24 11:22:41",
-                last_login: "2016-12-24 11:22:41",
-                is_active: true,
-                schedule: "12-13",
-                TotalSeats: "4",
-                TotalBookSeats: "0",
-                TotalRemainSeats: "-28",
-                VendorDistance: "4831.82"
-              }
-            ],
-            code: 0
-          }
-        };
-
-        defer.resolve(data);
-
+      $http.get(CONFIG.apiUrl + "properties?page=" + $params.page + "&destination=" + $params.destination + "&upcommingProperty=" + $params.upcommingProperty + "&api_key=" + CONFIG.apiKey, $params).success(function (resp) {
+        defer.resolve(resp);
         $log.log(resp);
         defer.resolve(resp);
-      }).error(function () {
-
-        var data = {
-          status: "200",
-          body: {
-            data: [
-              {
-                id: "7",
-                token: "PIXo7pSh",
-                email: "test2@test.com",
-                image: "../www/img/travel/act1.jpg",
-                password: "9810fdc1f26d399e7575f826c845fcde60424198",
-                first_name: "testhanu",
-                last_name: "hanuLast",
-                phone: "12345689",
-                city_id: "1",
-                state_id: "1",
-                pincode: "110045",
-                address: "test address",
-                latitude: "12345.55",
-                longitude: "2345.66",
-                status: "1",
-                group_id: "2",
-                category_id: "1",
-                dob: "0000-00-00",
-                newsleter: "Y",
-                about_me: "This is test about me",
-                profile_image: "1.jpg",
-                cover_image: "2.png",
-                device_id: "e345rtt66",
-                device_platform: "android",
-                creation_date: "2016-12-24 11:22:41",
-                last_login: "2016-12-24 11:22:41",
-                is_active: true,
-                schedule: "12-13",
-                TotalSeats: "4",
-                TotalBookSeats: "0",
-                TotalRemainSeats: "-28",
-                VendorDistance: "4831.82"
-              }, {
-                id: "7",
-                token: "PIXo7pSh",
-                image: "../www/img/travel/act2.jpg",
-                email: "test2@test.com",
-                password: "9810fdc1f26d399e7575f826c845fcde60424198",
-                first_name: "testhanu",
-                last_name: "hanuLast",
-                phone: "12345689",
-                city_id: "1",
-                state_id: "1",
-                pincode: "110045",
-                address: "test address",
-                latitude: "12345.55",
-                longitude: "2345.66",
-                status: "1",
-                group_id: "2",
-                category_id: "1",
-                dob: "0000-00-00",
-                newsleter: "Y",
-                about_me: "This is test about me",
-                profile_image: "1.jpg",
-                cover_image: "2.png",
-                device_id: "e345rtt66",
-                device_platform: "android",
-                creation_date: "2016-12-24 11:22:41",
-                last_login: "2016-12-24 11:22:41",
-                is_active: true,
-                schedule: "12-13",
-                TotalSeats: "4",
-                TotalBookSeats: "0",
-                TotalRemainSeats: "-28",
-                VendorDistance: "4831.82"
-              }, {
-                id: "7",
-                token: "PIXo7pSh",
-                image: "../www/img/travel/act3.jpg",
-                email: "test2@test.com",
-                password: "9810fdc1f26d399e7575f826c845fcde60424198",
-                first_name: "testhanu",
-                last_name: "hanuLast",
-                phone: "12345689",
-                city_id: "1",
-                state_id: "1",
-                pincode: "110045",
-                address: "test address",
-                latitude: "12345.55",
-                longitude: "2345.66",
-                status: "1",
-                group_id: "2",
-                category_id: "1",
-                dob: "0000-00-00",
-                newsleter: "Y",
-                about_me: "This is test about me",
-                profile_image: "1.jpg",
-                cover_image: "2.png",
-                device_id: "e345rtt66",
-                device_platform: "android",
-                creation_date: "2016-12-24 11:22:41",
-                last_login: "2016-12-24 11:22:41",
-                is_active: true,
-                schedule: "12-13",
-                TotalSeats: "4",
-                TotalBookSeats: "0",
-                TotalRemainSeats: "-28",
-                VendorDistance: "4831.82"
-              }
-            ],
-            code: 0
-          }
-        }
-
+      }).error(function (data) {
         defer.resolve(data);
         $ionicLoading.hide();
         $log.error("Error in get search api.");
@@ -501,19 +251,6 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
     getBaseSlotList: function () {
       var defer = $q.defer();
       var slots = [
-        {title: "10-11 AM", value: "10-11"},
-        {title: "11-12 AM", value: "11-12"},
-        {title: "12-13 AM", value: "12-13"},
-        {title: "13-14 AM", value: "13-14"},
-        {title: "14-15 AM", value: "14-15"},
-        {title: "15-16 AM", value: "15-16"},
-        {title: "16-17 AM", value: "16-17"},
-        {title: "17-18 AM", value: "17-18"},
-        {title: "18-19 AM", value: "18-19"},
-        {title: "19-20 AM", value: "19-20"},
-        {title: "20-21 AM", value: "20-21"},
-        {title: "21-22 AM", value: "21-22"},
-        {title: "22-23 AM", value: "22-23"},
         {title: "23-24 AM", value: "23-24"}
       ];
       defer.resolve(slots);
@@ -522,14 +259,6 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
     getDistanceList: function () {
       var defer = $q.defer();
       var distanceList = [
-        {id: 1, title: "Upto 1 KM", value: 1000},
-        {id: 2, title: "Upto 2 KM", value: 2000},
-        {id: 3, title: "Upto 5 KM", value: 5000},
-        {id: 4, title: "Upto 10 KM", value: 10000},
-        {id: 5, title: "Upto  20 KM", value: 20000},
-        {id: 6, title: "Upto 30 KM", vvalue: 30000},
-        {id: 7, title: "Upto 50 KM", value: 50000},
-        {id: 8, title: "Upto 100 KM", value: 100000},
         {id: 9, title: "Upto 500 KM", value: 5000000}
       ];
       defer.resolve(distanceList);
@@ -538,10 +267,6 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
     getBookingCountLIst: function () {
       var defer = $q.defer();
       var counterList = [
-        {title: "5 Bookings", value: 5},
-        {title: "10 Bookings", value: 10},
-        {title: "20 Bookings", value: 20},
-        {title: "50 Bookings", value: 50},
         {title: "100 Bookings", value: 100}
       ];
       defer.resolve(counterList);

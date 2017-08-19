@@ -1,0 +1,47 @@
+<ion-view view-title="Refer a Friend">
+  <div class="modal-">
+    <ion-content>
+      <form ng-submit="doSignup()" class="gem-form" style="margin-top: 10px;">
+        <div class="list">
+          <div class="profile-separator-title"><i class="ion-gear-a"></i> Personal Details</div> 
+          <label class="item item-input">
+            <select name="sirname" ng-model="signupData.sirName">
+              <option value="Mr">Mr</option>
+              <option value="Ms">Ms</option>
+              <option value="Mrs">Mrs</option>
+            </select>
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.name" placeholder="Name">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.email" placeholder="Email">
+          </label>
+          <label class="item item-input">
+            <input type="number" ng-model="signupData.phone" placeholder="Phone" maxlength="10">
+          </label>
+
+          <div class="profile-separator-title"><i class="ion-gear-a"></i> Friend's Details</div> 
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.friendName" placeholder="Friend's Name">
+          </label>
+          <label class="item item-input">
+            <input type="number" ng-model="signupData.friendPhone" placeholder="Friend's Phone" maxlength="10">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.friendState" placeholder="Friend's State">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.friendCity" placeholder="Friend's City">
+          </label>
+          
+          <label class="item">
+            <button class="button button-block button-positive" type="submit">Submit</button>
+          </label>
+        </div>
+      </form>
+      <div class="page-bottom"></div>
+    </ion-content>
+  </div>
+</ion-view>
+

@@ -1,6 +1,89 @@
 <ion-view view-title="Properties">
   <ion-content ng-class="{expanded:isExpanded}" class="has-header gem-ion-content feed">
     <div class="cate-lv1">
+      <div class="search-dest">
+        <p style="    border: solid 1px;background-color: #AABDFF;border-color: #8cadd0;color: white;font-size: 14px; border-radius: 5px; line-height: 2;text-align: center;font-style: italic;margin: 5px;padding: 5px;margin-top: 7px;">
+          For Booking Enquiry Email Us at- reservations@countryholidaysinnsuites.com &nbsp;|&nbsp;booking@countryholidaysinnsuites.com between 10:00Am to 6:00Pm.
+        </p>
+        <div class="property-left-filter">
+          <select name="change" ng-model="search.destination" ng-change="setProperty('destination', 'upcommingProperty')">
+            <option value="">Destination</option>
+            <option value="Manesar">Manesar</option>
+            <option value="Gurgaon">Gurgaon</option>
+            <option value="Manali">Manali</option>
+            <option value="Shimla">Shimla</option>
+            <option value="Mussoorie">Mussoorie</option>
+            <option value="Rishikesh">Rishikesh</option>
+            <option value="Auli">Auli</option>
+            <option value="Jim Corbett">Jim Corbett</option>
+            <option value="Amritsar">Amritsar</option>
+            <option value="Goa">Goa</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Lonavala">Lonavala</option>
+            <option value="Kovalam">Kovalam</option>
+            <option value="Haridwar">Haridwar</option>
+            <option value="Agra">Agra</option>
+            <option value="Kosi">Kosi</option>
+            <option value="Bhimtal">Bhimtal</option>
+            <option value="Dharamshala">Dharamshala</option>
+            <option value="Kumarakom">Kumarakom</option>
+            <option value="Mathura">Mathura</option>
+            <option value="Nainital">Nainital</option>
+            <option value="Kausani">Kausani</option>
+            <option value="Puri">Puri</option>
+            <option value="Katra">Katra</option>
+            <option value="Udaipur">Udaipur</option>
+            <option value="Jodhpur">Jodhpur</option>
+            <option value="Cochin">Cochin</option>
+            <option value="Shirdi">Shirdi)</option>
+            <option value="Gangtok">Gangtok</option>
+            <option value="Darjeeling">Darjeeling</option>
+            <option value="Jaipur">Jaipur</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Dubai">Dubai</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Munnar">Munnar</option>
+            <option value="Bangkok">Bangkok</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Ahmedabad">Ahmedabad</option>
+            <option value="Bali">Bali</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Ooty">Ooty</option>
+            <option value="Asmer">Ajmer</option>
+            <option value="Varansi">Varanasi</option>
+            <option value="Alleppey">Alleppey</option>
+            <option value="Bhubaneshwar">Bhubaneshwar</option>
+            <option value="Mysore">Mysore</option>
+            <option value="Paris">Paris</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Las Vegas">Las Vegas</option>
+            <option value="California">California</option>
+            <option value="France">France</option>
+            <option value="Scotland">Scotland</option>
+            <option value="Orlando">Orlando</option>
+            <option value="Los Angeles">Los Angeles</option>
+            <option value="Australia">Australia</option>
+          </select>
+        </div>
+        <div class="property-right-filter">
+          <select name="change" ng-model="search.upcommingProperty" ng-change="setProperty('upcommingProperty', 'destination')">
+            <option value="">Upcomings</option>
+            <option value="bangkok thailand">Bangkok, Thailand</option>
+            <option value="goa">Goa</option>
+            <option value="jaipur">Jaipur</option>
+            <option value="kumarakom">Kumarakom</option>
+            <option value="mangaon">Mangaon</option>
+            <option value="munnar">Munnar</option>
+            <option value="nanda-devi">Nanda Devi Mountains</option>
+            <option value="neral">Neral</option>
+            <option value="panvel">Panvel</option>
+            <option value="phuket-thailand">Phuket</option>
+          </select>
+        </div>
+      </div>
       <ion-list class="item card-item" ng-repeat="product in productList" ui-sref="app.details({ productId: product.id })">
         <div class="list card" style=" padding: 0px; margin-left:0px;margin-right: 0px;margin-bottom:10px;margin-top:0px;">
           <div style="background: url({{imageUrl}}{{product.image}}) no-repeat; background-size: cover; height: 150px; padding: 10px; background-color: #ccc;">
@@ -11,6 +94,7 @@
           </div>
         </div>
       </ion-list>
+      <ion-infinite-scroll ng-if="pagination" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
     </div>
   </ion-content>
 </ion-view>

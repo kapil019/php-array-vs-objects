@@ -1,0 +1,53 @@
+<ion-view view-title="Request">
+  <div class="modal-">
+    <ion-content>
+      <form ng-submit="doSignup()" class="gem-form" style="margin-top: 10px;">
+        <div class="list">
+          <label class="item item-input">
+            <ion-toggle class="no-border transparent-bg" ng-model="signupData.isMember" toggle-class="toggle-balanced" style='    background: #F6F6F6;'>
+              Member
+            </ion-toggle>
+          </label>
+          <label class="item item-input" ng-if='signupData.isMember'>
+            <input type="text" ng-model="signupData.membershipId" placeholder="Membership Id">
+          </label>
+          <label class="item item-input">
+            <select name="sirname" ng-model="signupData.sirName">
+              <option value="Mr">Mr</option>
+              <option value="Ms">Ms</option>
+              <option value="Mrs">Mrs</option>
+            </select>
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.name" placeholder="Name">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.email" placeholder="Email">
+          </label>
+          <label class="item item-input">
+            <input type="number" ng-model="signupData.phone" placeholder="Phone" maxlength="10">
+          </label>
+
+          <label class="item item-input item-stacked-label">
+            <textarea placeholder="Mailing address" ng-model="signupData.address"></textarea>
+          </label>
+          <label class="item item-input">
+            <select ng-model="signupData.feedbackType">
+              <option value="">Feedback Type</option>
+              <option value="Payment Pick Up">Payment Pick Up</option>
+              <option value="Others">Others</option>
+            </select>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <textarea placeholder="Remark" ng-model="signupData.remark"></textarea>
+          </label>
+          <label class="item">
+            <button class="button button-block button-positive" type="submit">Submit</button>
+          </label>
+        </div>
+      </form>
+      <div class="page-bottom"></div>
+    </ion-content>
+  </div>
+</ion-view>
+

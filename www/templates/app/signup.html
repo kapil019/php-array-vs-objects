@@ -7,16 +7,16 @@
       <!--</div>-->
     </ion-header-bar>
     <ion-content>
-      <form ng-submit="doSignup()" class="gem-form" style="margin-top: 50px;">
+      <form ng-submit="doSignup()" class="gem-form" style="margin-top: 15px;">
         <div class="list">
           <label class="item item-input">
             <input type="text" ng-model="signupData.name" placeholder="Name">
           </label>
           <label class="item item-input">
-            <input type="email" ng-model="signupData.email" placeholder="Email">
+            <input type="text" ng-model="signupData.email" placeholder="Email">
           </label>
           <label class="item item-input">
-            <input type="number" ng-model="signupData.phone" placeholder="Phone">
+            <input type="number" ng-model="signupData.phone" placeholder="Phone" maxlength="10">
           </label>
           <label class="item item-input">
             <input type="text" ng-model="signupData.state" placeholder="State">
