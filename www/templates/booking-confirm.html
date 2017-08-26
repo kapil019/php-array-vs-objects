@@ -1,0 +1,52 @@
+<ion-view view-title="Booking">
+  <ion-content>
+    <form class="gem-form" style="margin-top: 0px;">
+      <div class="list">
+        <div class="card" style="padding: 10px;">
+          <b>{{data.holiday.title}}: {{data.holiday.length_package.lenghtpackage}}</b>
+          <div style="padding-top:10px; padding-bottom:10px;"></div>
+          <div class="profile-separator-title"><i class="ion-gear-a"></i> Booking Details</div>           
+          <div style="padding-top:10px; padding-bottom:10px;"></div>
+          <div ng-if="data.selected_date">
+            <div style="padding-top:10px; padding-bottom:10px;">
+              Check in: {{data.selected_date.start_date}}
+            </div>
+            <div style="padding-top:10px; padding-bottom:10px;">
+              Check out: {{data.selected_date.end_date}}
+            </div>
+          </div>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            City: {{data.holiday.hotel_city}}
+          </div>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            Resort: {{data.holiday.title}}
+          </div>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            Adults:  {{data.adults}}
+          </div>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            Childs: {{data.childs}}
+          </div>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            Name: {{profileData.member_name}}
+          </div>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            Email: {{profileData.membership_id}}
+          </div>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            Phone: {{profileData.phone_no}}
+          </div>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            Utility Price: {{data.holiday._package_price}}
+          </div>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            <b>Total:</b> {{data.holiday._package_price}}
+          </div>
+        </div>
+        <label class="item">
+          <button class="button button-block button-positive " type="button" ng-click="saveBooking()">Proceed to pay</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

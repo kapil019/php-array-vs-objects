@@ -1,0 +1,27 @@
+<ion-view view-title="Contact Us">
+  <div class="modal-">
+    <ion-content>
+      <div style="padding: 20px; height: 60px; font-size: 20px; vertical-align: middle; text-align: center;background-color: #0a9ec7">
+        Our local offices
+      </div>
+      <form ng-submit="doSignup()" class="gem-form" style="margin-top: 10px;">
+        <div class="list">
+          <label class="item item-input">
+            <select ng-model="country" ng-options="option.country for option in data track by option.country">
+              <option value="">Select Branch</option>
+            </select>
+          </label>
+          <br>
+          <div ng-repeat="state in country.state" style="padding: 15px;background: #fff;line-height: 5px;">
+            <label ng-if="country && country !== null">
+              <span style="color: #000;font-size: 18px;">{{state.state_name}}</span>
+            </label>
+            <div ng-if="country && country !== null" ng-bind-html="country.state[0].city[0].address" style="margin-top: 15px;line-height: normal;">
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="page-bottom"></div>
+    </ion-content>
+  </div>
+</ion-view>

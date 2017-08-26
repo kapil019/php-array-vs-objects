@@ -1,0 +1,14 @@
+<ion-view view-title="Booking">
+  <ion-content>
+    <form class="gem-form">
+      <div class="list" style="margin-right: 15px;">
+        <ion-list>
+          <ion-item class="item item-icon-right" ng-repeat="city in data.cityList" style="background-color: #fff; color: #584949; margin: 8px;margin-right: 8px;" ng-click="goToNextSlide(city.idte_id)">
+            {{city.title}} ({{city.hotel_city}})
+            <i class="icon ion-chevron-right" style="font-size: 20px;"></i>
+          </ion-item>
+        </ion-list>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,33 @@
+<ion-view view-title="Send message">
+  <div class="modal-">
+    <ion-content>
+      <div style="padding: 20px; height: 60px; font-size: 20px; vertical-align: middle; text-align: center;background-color: #0a9ec7">
+        Send us a message
+      </div>
+      <form ng-submit="doSignup()" class="gem-form" style="margin-top: 10px;">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.name" placeholder="Name">
+          </label>
+          <label class="item item-input">
+            <input type="email" ng-model="signupData.email" placeholder="Email">
+          </label>
+          <label class="item item-input">
+            <input type="number" ng-model="signupData.phone" placeholder="Phone" maxlength="10">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="signupData.subject" placeholder="Subject">
+          </label>
+          <label class="item item-input">
+            <textarea type="text" ng-model="signupData.message" placeholder="Message"></textarea>
+          </label>
+          <label class="item">
+            <button class="button button-block button-positive" type="submit">Submit</button>
+          </label>
+        </div>
+      </form>
+      <div class="page-bottom"></div>
+    </ion-content>
+  </div>
+</ion-view>
+
