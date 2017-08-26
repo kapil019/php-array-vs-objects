@@ -17,6 +17,7 @@
       <h2 ng-if="!isUserLoggedIn">Guest</h2>
     </ion-header-bar>
     <ion-content class="stable-bg has-expanded-header">
+      <img src="img/CHIS12.png" style="width:100%; margin-top: 10px;"/>
       <ion-list>
         <ion-item nav-clear menu-close href="#/app/home">
           Home
@@ -27,17 +28,11 @@
         <ion-item nav-clear menu-close href="#/app/login" ng-if="!isUserLoggedIn">
           Member Login
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/signup" ng-if="!isUserLoggedIn">
-          Register
-        </ion-item>
         <ion-item nav-clear menu-close href="#/app/home/properties">
           Properties
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/destinations">
           Our Locations
-        </ion-item>
-        <ion-item nav-clear menu-close href="#" ng-if="isUserLoggedIn" ng-click="logout()">
-          Logout
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/profile" ng-if="isUserLoggedIn">
           Profile
@@ -64,12 +59,18 @@
           <ion-item nav-clear menu-close href="#/app/refer">
             Refer a Friend
           </ion-item>
-          <ion-item nav-clear menu-close href="#/app/holidayfeedback">
-            Post Holiday Feedback
-          </ion-item>
         </div>
         <ion-item nav-clear menu-close href="#/app/contant-us">
           Contact Us
+        </ion-item>
+        <ion-item nav-clear menu-close href="https://www.facebook.com/countryholidaysinnsuites">
+          Facebook
+        </ion-item>
+        <ion-item nav-clear menu-close href="https://www.youtube.com/channel/UCCi7mV_awNFp-krSTB6ozjQ">
+          You Tube
+        </ion-item>
+        <ion-item nav-clear menu-close href="#" ng-if="isUserLoggedIn" ng-click="logout()">
+          Logout
         </ion-item>
       </ion-list>
     </ion-content>

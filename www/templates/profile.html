@@ -1,86 +1,101 @@
 <ion-view view-title="Profile">
   <ion-content>
-    <div class="list animate-fade-slide-in-right-">
-      <table width="100%" border="1" ng-if="profileData && profileData !== null" style="margin: 10px;" class="profile-detail-table">
-        <tbody>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Card No</th>
-            <td height="40"> {{profileData.card_no}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Membership Date</th>
-            <td height="40"> {{profileData.joindate}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Spouse Name</th>
-            <td height="40"> {{profileData.spouse_name}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Name</th>
-            <td height="40">{{profileData.member_name}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">DOB</th>
-            <td height="40">{{profileData.dob}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">First Child Name</th>
-            <td height="40">{{profileData.childrenf}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Second Child Name</th>
-            <td height="40">{{profileData.childrensec}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Anniversary</th>
-            <td height="40">{{profileData.anniversary}}</td>
-          </tr>
+    <div class="list animate-fade-slide-in-right- profile-page">
+      <div ng-if="profileData && profileData !== null" style="margin:0px;" class="profile-detail-table">        
+        <div id="content">
+          <div id="profile-info">
+            <img id="profile-image" src="img/images111.jpg">
+            <h3 id="profile-name">{{profileData.member_name}}</h3>
+            <span id="profile-description">{{profileData.membership_id}}
+              <br>
+              {{profileData.phone_no}}
+            </span>
+          </div>
+        </div>
 
 
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Last Holiday Used</th>
-            <td height="40">{{profileData.lastHoliday}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Membership Type</th>
-            <td height="40">{{profileData.mcategory}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Mobile No</th>
-            <td height="40">{{profileData.phone_no}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Address</th>
-            <td height="40" ng-bind-html="profileData.address">
-                  
-            </td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Membership Tenure</th>
-            <td height="40" ng-bind-html="profileData.package_detail">
-                  
-            </td>
-          </tr>
+        <div class="profile-separator-title"><i class="ion-person"></i> Membership Details</div> 
+        <div class="item">
+          <div class="item-head">Membership Type</div>
+          <div class="item-text">{{profileData.mcategory}}</div>
+        </div>
+        <div class="item">
+          <div class="item-head">DOB</div>
+          <div class="item-text">{{profileData.dob}}</div>
+        </div>
 
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Membership Amount</th>
-            <td height="40">{{profileData.package_amount}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Advance Amount</th>
-            <td height="40">{{profileData.advance_amount}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Due Amount</th>
-            <td height="40">{{profileData.due_amount}}</td>
-          </tr>
-          <tr class="item">
-            <th height="40" width="200" style="text-align:left;">Amc Amount</th>
-            <td height="40">{{profileData.amcamount}}</td>
-          </tr>
+        <div class="item">
+          <div class="item-head">Last Holiday Used</div>
+          <div class="item-text">{{profileData.lastHoliday}}</div>
+        </div>
+        <div class="item">
+          <div class="item-head">Membership Tenure</div>
+          <div class="item-text" ng-bind-html="profileData.package_detail"></div>
+        </div>
+        <div class="item">
+          <div class="item-head">Membership Date</div>
+          <div class="item-text"> {{profileData.joindate}}</div>
+        </div>
+        <div class="profile-separator-title"><i class="ion-person"></i> Spouse Details</div>
+        <div class="item" style="padding: 0px;">
+          <div style="float:left;">
+            <img src="img/web_hi_res_512.png" style="width:100px; float: left;"/>          
+          </div>
+          <div style="float:left; margin-top: 20px;">
+            <div class="item-head"><b>{{profileData.spouse_name}}</b>
+              <br><div>Marriage Date: {{profileData.anniversary}}</div>
+            </div>             
+          </div>
+        </div>
+        <div class="profile-separator-title"><i class="ion-person"></i> Dependant Details</div>
+        <div class="item">
+          <div class="item-head">First Child Name</div>
+          <div class="item-text">{{profileData.childrenf}}</div>
+        </div>
+        <div class="item">
+          <div class="item-head">Second Child Name</div>
+          <div class="item-text">{{profileData.childrensec}}</div>
+        </div>
+        <div class="profile-separator-title"><i class="ion-person"></i> Address</div> 
 
-        </tbody>
-      </table>
+        <div class="item">
+          <div class="item-head" ng-bind-html="profileData.address"></div>
+        </div>
+
+        <div class="profile-separator-title"><i class="ion-person"></i> Payment Details</div> 
+        <div class="item">
+          <div class="item-head">Membership Amount</div>
+          <div class="item-text">{{profileData.package_amount}}</div>
+        </div>
+        <div class="item">
+          <div class="item-head">Advance Amount</div>
+          <div class="item-text">{{profileData.advance_amount}}</div>
+        </div>
+        <div class="item">
+          <div class="item-head">Due Amount</div>
+          <div class="item-text">{{profileData.due_amount}}</div>
+        </div>
+        <div class="item">
+          <div class="item-head">Amc Amount</div>
+          <div class="item-text">{{profileData.amcamount}}</div>
+        </div>
+
+        <div class="profile-separator-title"><i class="ion-person"></i> Membership Card</div>
+
+
+        <div class="item">
+          <!--          <div style="float:left;">
+                      <img src="img/web_hi_res_512.png" style="width:100px; float: left;"/>          
+                    </div>-->
+          <div style="float:left;">
+            <div class="item-head">{{profileData.mcategory}}<br> {{profileData.joindate}} <br> Member </div>
+          </div>
+        </div>
+
+      </div>
+      <div style="text-align: center; margin-bottom: 50px; margin-top: 20px;">
+        <a ui-sref="app.change-pwd" class="button-positive custom-buoon-2 ng-binding" style="text-decoration: none;font-size: 18px;"> Change Password </a>
+      </div>
     </div>    
   </ion-content>
 </ion-view>

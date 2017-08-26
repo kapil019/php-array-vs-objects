@@ -41,13 +41,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     });
     
-    $ionicPlatform.registerBackButtonAction(function () {
+//    $ionicPlatform.registerBackButtonAction(function () {
 //      if (condition) {
-        navigator.app.exitApp();
+//        navigator.app.exitApp();
 //      } else {
 //        handle back action!
 //      }
-    }, 100);
+//    }, 100);
   })
 
   .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
@@ -135,6 +135,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           'menuContent': {
             templateUrl: 'templates/change-pwd.html',
             controller: 'ChangePwdCtrl'
+          }
+        }
+      })
+      .state('app.booking1', {
+        url: '/booking1/:hid',
+        cache: false,
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/booking1.html',
+            controller: 'Booking1Ctrl'
+          }
+        }
+      })
+      .state('app.booking', {
+        url: '/booking/:cityId/:hid',
+        cache: false,
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/booking.html',
+            controller: 'BookingCtrl'
+          }
+        }
+      })
+      .state('app.booking-confirm', {
+        url: '/booking-confirm/:hid',
+        cache: false,
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/booking-confirm.html',
+            controller: 'BookingConfirmCtrl'
           }
         }
       })
@@ -273,8 +303,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         cache: true,
         views: {
           'menuContent': {
-            templateUrl: 'templates/app/contant-us.html',
+            templateUrl: 'templates/app/contant-us.html'
+          }
+        }
+      })
+      .state('app.contant-us1', {
+        url: '/contant-us1',
+        cache: true,
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/app/contant-us1.html',
             controller: 'ContactCtrl'
+          }
+        }
+      })
+      .state('app.contant-find', {
+        url: '/contant-find',
+        cache: true,
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/app/contant-find.html',
+            controller: 'ContactFindCtrl'
           }
         }
       })

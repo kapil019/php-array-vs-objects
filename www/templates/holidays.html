@@ -2,19 +2,19 @@
   <ion-content>
     <div class="list animate-fade-slide-in-right-">
       <div width="100%" border="1" ng-if="profileData && profileData !== null" style="margin: 10px;" class="profile-detail-table">
-<!--        <div class="item" style="padding: 10px!important;">
-          <div style="text-align:left; float: left; width: 60%">Length</div>
-          <div style="text-align:left; float: left;width: 40%"> Used</div>
-        </div>-->
-        <div class="item" style="padding: 10px!important;" ng-repeat="data in profileData">
-          <div style="text-align:left; float: left;width: 65%">
+        <div class="item" style="padding: 10px!important;margin: 0px;margin-bottom:10px;" ng-repeat="data in profileData">
+          <div style="text-align:left; float: left;width: 65%;line-height: 28px;">
             <b>Length:</b> {{data.holiday_lenth}}
             <br>
             <b>From:</b> {{data.valid_from}} <b>To:</b> {{data.valid_to}}
+            <div ng-if="data.location_use">
+              <b>Location :</b> {{data.location_use}}
+            </div>
           </div>
-          <div style="text-align:right; float: right;width: 35%"> 
-            <button class="button-positive custom-buoon-2" ion-button small ng-if="data.used == 'Book'">{{data.used}}</button>
-            <button class="button-balanced custom-buoon-2" ion-button small ng-if="data.used != 'Book'">{{data.used}}</button>
+          <div style="text-align:right; float: right;width: 35%">
+            <button class="button-assertive custom-buoon-2" ion-button small ui-sref="app.booking1({hid:{{data.hid}}})" ng-if="data.used == 'Book'">{{data.used}}</button>
+            <button class="button-balanced custom-buoon-2" ion-button small ng-if="data.used == 'Available'">{{data.used}}</button>
+            <button class="button-positive custom-buoon-2" ion-button small ng-if="data.used != 'Book' && data.used != 'Available'">{{data.used}}</button>
           </div>
         </div>
       </div>

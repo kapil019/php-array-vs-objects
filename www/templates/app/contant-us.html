@@ -1,37 +1,34 @@
 <ion-view view-title="Contact Us">
   <div class="modal-">
     <ion-content>
-      <img src="http://www.countryholidaysinnsuites.com/images/contactus.png" style="width:100%"/>
-      <form ng-submit="doSignup()" class="gem-form" style="margin-top: 10px;">
-        <div class="list card cms-text" style="padding: 15px; margin: 15px;" ng-repeat="cms in cmsData">
-          <div style="font-size: 18px; padding-bottom: 20px;" ng-bind-html="cms.tlb_cms_title" ng-if='cms.tlb_cms_title && cms.tlb_cms_title != null'></div>
-          <div ng-bind-html="cms.tlb_cms_text | stripStrong" ng-if='cms.tlb_cms_text && cms.tlb_cms_text != null'></div>
+      <div style="padding: 20px; height: 60px; font-size: 20px; vertical-align: middle; text-align: center;background-color: #0a9ec7">
+        Support
+      </div>
+      <img ui-sref="app.contant-us1" src="img/c4.jpg" style="width:100%"/>
+      <div style="padding: 20px; height: 280px; line-height: 34px; font-size: 14px; vertical-align: middle; text-align: center;background-color: rgba(174, 172, 172, 0.69); margin-top: -10px; z-index: 99999">
+        <div>
+          <li class="ion-ios-telephone" data-pack="ios" data-tags="oldschool, call" style="display: inline-block;font-size: 30px; color: green; margin-top: 5px;"></li>
+          <span style="color: #736E6E;font-weight: bold;font-size: 26px;">
+            180030002701
+          </span>
         </div>
-        <div class="list">
-          <h3 class="item item-input" style="font-size: 16px;">
-            Get in Touch
-          </h3>
-          <label class="item item-input">
-            <input type="text" ng-model="signupData.name" placeholder="Name">
-          </label>
-          <label class="item item-input">
-            <input type="email" ng-model="signupData.email" placeholder="Email">
-          </label>
-          <label class="item item-input">
-            <input type="number" ng-model="signupData.phone" placeholder="Phone" maxlength="10">
-          </label>
-          <label class="item item-input">
-            <input type="text" ng-model="signupData.subject" placeholder="Subject">
-          </label>
-          <label class="item item-input">
-            <textarea type="text" ng-model="signupData.message" placeholder="Message"></textarea>
-          </label>
-          <label class="item">
-            <button class="button button-block button-positive" type="submit">Submit</button>
-          </label>
+        <div>
+          <li class="ion-android-time" data-pack="android" data-tags="clock" style="display: inline-block;color: green;"></li>
+          10:00 AM - 7:00 PM (Tuesday to Sunday)
         </div>
-      </form>
-      <div class="page-bottom"></div>
+        <div>
+          <li class="ion-android-time" data-pack="android" data-tags="clock" style="display: inline-block;color: red;"></li>
+          Monday and National Holidays
+        </div>
+        <div style="text-align: center; margin-bottom: 50px; margin-top: 20px;">
+          <a ui-sref="app.contant-find" class="button-positive custom-buoon-2 ng-binding" style="font-size: 14px;
+             background: #FFFDFD; text-decoration: none;
+             color: #0595A2;padding: 12px 25px 12px 25px;"> 
+            Find our local office near you 
+          </a>
+        </div>
+      </div>
+      <img src="img/c1.jpg" style="width:100%"/>
     </ion-content>
   </div>
 </ion-view>

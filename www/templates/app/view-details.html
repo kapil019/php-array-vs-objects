@@ -2,18 +2,18 @@
   <ion-content class="gem-ion-content single-post">
     <div class="row-slider">
       <div class="col-slider">
-        <div class="list card-" ng-if='!product.images' style=" background-color: #ccc; height: 160px;">
-          <div class="item item-image" style="background-color: #ccc; background: url({{imageUrl}}{{product.tlb_image}}) no-repeat; height: 150px; background-size: cover;" on-finish="onFinishRemoteSecond" on-start="onStartRemoteSecond" on-progress="onProgressRemoteSecond">
-            <div class="isicontent" style="text-align: center;margin-top: 60px; font-size: 24px; color: #DED7D7; opacity: 0.4">
+        <div class="list card-" ng-if='!product.images' style=" background-color: #ccc; height: 240px;">
+          <div class="item item-image" style="background-color: #ccc; background: url({{imageUrl}}{{product.tlb_image}}) no-repeat; height: 240px; background-size: cover;" on-finish="onFinishRemoteSecond" on-start="onStartRemoteSecond" on-progress="onProgressRemoteSecond">
+            <div class="isicontent" style="text-align: center;margin-top: 110px; font-size: 24px; color: #DED7D7; opacity: 0.4">
               Country Holidays Inn & Suites
             </div>
           </div>
         </div>
-        <ion-slide-box auto-play="true" ng-if='product.images' does-continue="true" slide-interval="5000" style="height: 150px;">
+        <ion-slide-box auto-play="true" ng-if='product.images' does-continue="true" slide-interval="5000" style="height: 240px;">
           <ion-slide ng-repeat="image in product.images">
-            <div class="list card-" style=" background-color: #ccc; height: 160px;">
-              <div class="item item-image" style="background-color: #ccc; background: url({{imageUrl}}{{image}}) no-repeat; height: 150px; background-size: cover;" on-finish="onFinishRemoteSecond" on-start="onStartRemoteSecond" on-progress="onProgressRemoteSecond">
-                <div class="isicontent" style="text-align: center;margin-top: 60px; font-size: 24px; color: #DED7D7; opacity: 0.4">
+            <div class="list card-" style=" background-color: #ccc; height: 240px;">
+              <div class="item item-image" style="background-color: #ccc; background: url({{imageUrl}}{{image}}) no-repeat; height: 240px; background-size: cover;" on-finish="onFinishRemoteSecond" on-start="onStartRemoteSecond" on-progress="onProgressRemoteSecond">
+                <div class="isicontent" style="text-align: center;margin-top: 110px; font-size: 24px; color: #DED7D7; opacity: 0.4">
                   Country Holidays Inn & Suites
                 </div>
               </div>
@@ -24,9 +24,9 @@
     </div>
     <div class="list- animate-fade-slide-in-right-">
       <div class="item">
-        <h2>{{product.name}}</h2>
-        <p>{{product.duration}}</p>
-        <h3 class="post-title" ng-bind-html="product.location | stripStrong">   </h3>
+        <h2 style="color: #01C6D9;">{{product.name}}</h2>
+        <p style="color: #01C6D9;">{{product.duration}}</p>
+        <h3 style="color: #01C6D9;" class="post-title" ng-bind-html="product.location | stripStrong">   </h3>
       </div>
     </div>
     <!-- Post Content -->
@@ -36,7 +36,7 @@
     <div class="list animate-fade-slide-in-right padding-bottom-100">
       <input type="radio" name="day" value="sun" style="display: none;">
       <div class="list gem-list">
-        <div class="tabs tabs-top tab-day-selection" style="top:0px">
+        <div class="tabs tabs-top tab-day-selection" style="top:-1px">
           <a class="tab-item">
             <div class="tab-item" ng-class="{'active':activeTab == 'location'}" ng-click="selectTab('location')">
               <div class="schedule-day-">Location</div>
@@ -48,7 +48,8 @@
             </div>
           </a>
         </div>
-        <div style="clear: both; margin-top: 70px">
+        <div style="clear: both; margin-top: 46px;background: #fff;
+    padding: 15px;">
           <div class="product-descriptions tab-content product-descriptions2" ng-class="{'tab-show':activeTab == 'location'}" ng-bind-html="product.phighlight | stripStrong"></div>
           <div class="product-descriptions tab-content product-descriptions2" ng-class="{'tab-show':activeTab == 'aminities'}" ng-bind-html="product.aminities | stripStrong"></div>
         </div>

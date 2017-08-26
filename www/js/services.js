@@ -27,7 +27,7 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
     forgotPassword: function ($data) {
       $log.log("geting user details");
       var defer = $q.defer();
-      $http.post(CONFIG.apiUrl + "forgotPassword?api_key=" + CONFIG.apiKey).success(function (resp) {
+      $http.post(CONFIG.apiUrl + "forgotPassword?api_key=" + CONFIG.apiKey, $data).success(function (resp) {
         $log.log(resp);
         defer.resolve(resp);
       }).error(function () {
@@ -274,7 +274,29 @@ app.factory('apiManager', function ($http, $q, $log, $ionicLoading, CONFIG) {
     },
     getCityList: function ($stateId) {
       var defer = $q.defer();
-      $http.get(CONFIG.apiUrl + "booking/cities?state_id=" + $stateId + "&api_key=" + CONFIG.apiKey).success(function (resp) {
+      $http.get(CONFIG.apiUrl + "getBookingCityList?state_id=" + $stateId + "&api_key=" + CONFIG.apiKey).success(function (resp) {
+        $log.log(resp);
+        defer.resolve(resp);
+      }).error(function () {
+        $ionicLoading.hide();
+        $log.error("Error in get city list api.");
+      });
+      return defer.promise;
+    },
+    customGet: function (url) {
+      var defer = $q.defer();
+      $http.get(CONFIG.apiUrl + url).success(function (resp) {
+        $log.log(resp);
+        defer.resolve(resp);
+      }).error(function () {
+        $ionicLoading.hide();
+        $log.error("Error in get city list api.");
+      });
+      return defer.promise;
+    },
+    customPost: function (url, params) {
+      var defer = $q.defer();
+      $http.post(CONFIG.apiUrl + url, params).success(function (resp) {
         $log.log(resp);
         defer.resolve(resp);
       }).error(function () {

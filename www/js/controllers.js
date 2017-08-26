@@ -72,23 +72,9 @@ angular.module('starter.controllers', [])
         $scope.isUserLoggedIn = false;
       }, 2);
     };
-
-
     $scope.categoryList = [];
     $scope.stateList = [];
     $scope.cityList = [];
-//    apiManager.getCategoryList($scope.signupData).then(function (resp) {
-//      if (!resp.code) {
-//        $scope.categoryList = resp.body.data;
-//      }
-//      apiManager.getStateList().then(function (resp) {
-//        if (!resp.code) {
-//          $scope.stateList = resp.body.data;
-//          $scope.updateCityList($scope.stateList[0].id);
-//        }
-//      });
-//    });
-
     $scope.updateCityList = function ($stateId) {
       $ionicLoading.show();
       apiManager.getCityList($stateId).then(function (resp) {
@@ -100,7 +86,7 @@ angular.module('starter.controllers', [])
     };
 
   })
-  
+
   .controller('ForgotCtrl', function ($scope, $ionicLoading, CONFIG, $log, ionicToast, apiManager) {
     $scope.recoverData = {
       email: null,
@@ -113,30 +99,147 @@ angular.module('starter.controllers', [])
         ionicToast.show('Email can not be left blank.', 'middle', false, 1500);
       } else if ($scope.recoverData.email && !$scope.emailValidator.test($scope.recoverData.email)) {
         ionicToast.show('Please enter valid email.', 'middle', false, 1500);
-      }else {
+      } else {
         $ionicLoading.show();
         $log.log("Inside valid details");
         apiManager.forgotPassword($scope.recoverData).then(function (resp) {
           if (resp.status) {
-            ionicToast.show('We have sent you  password to your registered email, Please check your email', 'middle', false, 2000);
+            ionicToast.show('We have sent you  password to your registered email, Please check your email.', 'middle', false, 2000);
+            $ionicLoading.hide();
+          } else if (resp.message) {
+            ionicToast.show(resp.message, 'middle', false, 2000);
             $ionicLoading.hide();
           } else {
-            ionicToast.show('Cound not find email.', 'middle', false, 2000);
+            ionicToast.show('Your email is not registered, Please try with a registered email.', 'middle', false, 2000);
             $ionicLoading.hide();
           }
         });
       }
     };
   })
+
+  .controller('Booking1Ctrl', function ($scope, $ionicLoading, $state, $rootScope, CONFIG, apiManager, $stateParams, $ionicNavBarDelegate) {
+    $scope.data = {
+      cityList: []
+    };
+    $ionicNavBarDelegate.showBackButton(true);
+    $scope.imageUrl = CONFIG.imageUrl;
+    $ionicLoading.show();
+    apiManager.getCityList().then(function (resp) {
+      $ionicLoading.hide();
+      $scope.data.cityList = resp.data;
+    });
+    $scope.goToNextSlide = function (id) {
+      $state.go('app.booking', {cityId: id, hid: $stateParams.hid});
+    };
+  })
   
+  .controller('ContactFindCtrl', function ($scope, $ionicLoading, $state, $rootScope, CONFIG, apiManager, $stateParams, $ionicNavBarDelegate) {
+    $scope.data = null;
+    $scope.country = null;
+//    $scope._state = null;
+    $ionicNavBarDelegate.showBackButton(true);
+    $ionicLoading.show();
+    var url = "getAddressList";
+    apiManager.customGet(url).then(function (resp) {
+      $ionicLoading.hide();
+      $scope.data = resp.data;
+    });
+  })
+
+  .controller('BookingCtrl', function ($scope, $ionicLoading, CONFIG, $stateParams, $localStorage, ionicToast, apiManager, $state, $rootScope, $ionicNavBarDelegate) {
+    $scope.data = {
+      resporce: [],
+      adults: 1,
+      childs: 0,
+      childAge: []
+    };
+    $scope.user = $localStorage.getUser();
+    $ionicNavBarDelegate.showBackButton(true);
+    $scope.imageUrl = CONFIG.imageUrl;
+    $ionicLoading.show();
+    var url = "getCityPackageList?idte_id=" + $stateParams.cityId + "&email=" + $scope.user.email;
+    apiManager.customGet(url).then(function (resp) {
+      $ionicLoading.hide();
+      $scope.data.resporce = resp.data;
+      $scope.data.selected_date = $scope.data.resporce.itenary_package[0].date_available[0];
+    });
+    $scope.childs = [];
+    $scope.getRange = function (n) {
+      $scope.childs = [];
+      for (var i = 1; i <= n; i++) {
+        $scope.childs.push(i);
+        if (!$scope.data.childAge[i]) {
+          $scope.data.childAge[i] = 1;
+        }
+      }
+      return $scope.childs;
+    };
+    $scope.cinfirm = function () {
+      $rootScope.booking = {
+        holiday: $scope.data.resporce.itenary_package[0],
+        selected_date: $scope.data.selected_date,
+        adults: $scope.data.adults,
+        childs: $scope.data.childs,
+        childAge: $scope.data.childAge
+      };
+      $state.go('app.booking-confirm', {cityId: $stateParams.cityId, hid: $stateParams.hid});
+    };
+  })
+
+  .controller('BookingConfirmCtrl', function ($scope, $ionicLoading, CONFIG, $stateParams, $log, ionicToast, apiManager, $rootScope, $localStorage, $ionicNavBarDelegate) {
+    $scope.data = $rootScope.booking;
+    $scope.imageUrl = CONFIG.imageUrl;
+    $scope.user = $localStorage.getUser();
+    $ionicNavBarDelegate.showBackButton(true);
+    $ionicLoading.show();
+    apiManager.getProfile($scope.user.id).then(function (resp) {
+      $ionicLoading.hide();
+      if (!resp.error) {
+        resp.data.address = resp.data.address.split(",").join("<br>");
+        resp.data.package_detail = resp.data.package_detail.split("FOR ").join("<br>FOR ");
+        $scope.profileData = resp.data;
+      }
+    });
+    $scope.saveBooking = function () {
+      $ionicLoading.show();
+      var request = {
+        firstname: $scope.profileData.member_name.split(' ')[0],
+        email: $scope.profileData.membership_id,
+        phone: $scope.profileData.phone_no,
+        amount: $scope.data.holiday.package_price,
+        status: "",
+        hid: $stateParams.hid,
+        adults: $scope.data.adults,
+        childs: $scope.data.childs,
+        childAge: $scope.data.childAge,
+        selected_date: $scope.data.selected_date,
+        city: $scope.data.holiday.hotel_city,
+        resort: $scope.data.holiday.title,
+        duration: $scope.data.holiday.length_package.lenghtpackage
+      };
+      apiManager.createOrder(request).then(function (resp) {
+        $ionicLoading.hide();
+        if (!resp.error) {
+          onDeviceReadyTest(resp.data.txnid);
+        } else {
+          ionicToast.show('Some error occured please try again later.', 'middle', false, 2000);
+        }
+      });
+    };
+  })
+
   .controller('ChangePwdCtrl', function ($scope, $ionicLoading, CONFIG, $log, ionicToast, apiManager, $localStorage) {
     $scope.user = $localStorage.getUser();
-    $scope.recoverData = {
-      old: null,
-      new: null,
-      repeat: null,
-      userId: $scope.user.id
+    var _initData = function () {
+      $scope.recoverData = {
+        old: null,
+        new : null,
+        repeat: null,
+        userId: $scope.user.id
+      };
     };
+    _initData();
     $scope.passwordValidator = CONFIG.validators.password;
     $scope.tryForgot = function () {
       $scope.submitted = true;
@@ -150,12 +253,16 @@ angular.module('starter.controllers', [])
         ionicToast.show('Passwords should be 6-12 characters long.', 'middle', false, 1500);
       } else if ($scope.recoverData.new && $scope.recoverData.new !== $scope.recoverData.repeat) {
         ionicToast.show('Repeat password did not patch to new password.', 'middle', false, 1500);
-      }else {
+      } else {
         $ionicLoading.show();
         $log.log("Inside valid details");
         apiManager.changePassword($scope.recoverData).then(function (resp) {
           if (resp.status) {
             ionicToast.show('Your password has changed successfully.', 'middle', false, 2000);
+            _initData();
+            $ionicLoading.hide();
+          } else if (resp.message) {
+            ionicToast.show(resp.message, 'middle', false, 2000);
             $ionicLoading.hide();
           } else {
             ionicToast.show('Cound not find email.', 'middle', false, 2000);
@@ -601,26 +708,12 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('ContactCtrl', function ($scope, $rootScope, apiManager, $ionicLoading, ionicToast, $log, CONFIG) {
+  .controller('ContactCtrl', function ($scope, $rootScope, apiManager, $ionicLoading, ionicToast, $log, CONFIG, $ionicNavBarDelegate) {
     $scope.signupData = {};
     $scope.emailValidator = CONFIG.validators.email;
     $scope.passwordValidator = CONFIG.validators.password;
     $scope.phoneValidator = CONFIG.validators.phone;
-
-    $scope.cmsData = {};
-    if ($rootScope.cmsData3 && $rootScope.cmsData3 !== null) {
-      $scope.cmsData = $rootScope.cmsData3;
-    } else {
-      $ionicLoading.show();
-      apiManager.getCmsData(37).then(function (resp) {
-        $ionicLoading.hide();
-        if (!resp.error) {
-          $scope.cmsData = resp.data;
-          $rootScope.cmsData3 = $scope.cmsData;
-        }
-      });
-    }
-
+    $ionicNavBarDelegate.showBackButton(true);
     $scope.doSignup = function () {
       $log.log("Indide signup action");
       $scope.submitted = true;
@@ -687,9 +780,9 @@ angular.module('starter.controllers', [])
   .controller('ProfileCtrl', function ($scope, $localStorage, $rootScope, $state, $ionicLoading, apiManager) {
     $scope.profileData = {};
     $scope.user = $localStorage.getUser();
-    if (!$rootScope.isUserLoggedIn) {
-      $state.go('app.home');
-    }
+//    if (!$rootScope.isUserLoggedIn) {
+//      $state.go('app.home');
+//    }
     $ionicLoading.show();
     apiManager.getProfile($scope.user.id).then(function (resp) {
       $ionicLoading.hide();
@@ -937,7 +1030,7 @@ angular.module('starter.controllers', [])
 
   .controller('DetailsCtrl', function ($scope, $stateParams, $timeout, $state, apiManager, CONFIG, $ionicSlideBoxDelegate, $ionicNavBarDelegate, $ionicLoading) {
     // Activate ink for controller
-  
+
     $ionicNavBarDelegate.showBackButton(true);
     $scope.goToBook = function () {
       $state.go("app.book-now");
@@ -971,7 +1064,7 @@ angular.module('starter.controllers', [])
     $ionicNavBarDelegate.showBackButton(false);
     apiManager.getTxnDetails($stateParams.txnId).then(function (resp) {
       if (!resp.error) {
-        $scope.txnData  = resp.data;
+        $scope.txnData = resp.data;
       }
     });
   })
