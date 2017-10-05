@@ -17,6 +17,7 @@
       <h2 ng-if="!isUserLoggedIn">Guest</h2>
     </ion-header-bar>
     <ion-content class="stable-bg has-expanded-header">
+      <br>
       <img src="img/CHIS12.png" style="width:100%; margin-top: 10px;"/>
       <ion-list>
         <ion-item nav-clear menu-close href="#/app/home">
@@ -28,6 +29,9 @@
         <ion-item nav-clear menu-close href="#/app/login" ng-if="!isUserLoggedIn">
           Member Login
         </ion-item>
+        <ion-item nav-clear menu-close href="#/app/redeem">
+         Redeem Voucher
+        </ion-item>
         <ion-item nav-clear menu-close href="#/app/home/properties">
           Properties
         </ion-item>
@@ -36,6 +40,12 @@
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/profile" ng-if="isUserLoggedIn">
           Profile
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/amc" ng-if="isUserLoggedIn">
+          AMC Fee
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/membership-fee" ng-if="isUserLoggedIn">
+          Membership Fee
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/payment">
           Payment
@@ -47,18 +57,18 @@
           <ion-item nav-clear menu-close href="#/app/membership/2" ng-if="!isUserLoggedIn">
             Membership
           </ion-item>
-          <ion-item nav-clear menu-close href="#/app/bookholiday">
+<!--          <ion-item nav-clear menu-close href="#/app/bookholiday">
             Book a Holiday
-          </ion-item>
+          </ion-item>-->
           <ion-item nav-clear menu-close href="#/app/feedback">
             Feedback
           </ion-item>
           <ion-item nav-clear menu-close href="#/app/request">
             Request
           </ion-item>
-          <ion-item nav-clear menu-close href="#/app/refer">
+<!--          <ion-item nav-clear menu-close href="#/app/refer">
             Refer a Friend
-          </ion-item>
+          </ion-item>-->
         </div>
         <ion-item nav-clear menu-close href="#/app/contant-us">
           Contact Us

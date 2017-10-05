@@ -133,7 +133,7 @@ angular.module('starter.controllers', [])
       $state.go('app.booking', {cityId: id, hid: $stateParams.hid});
     };
   })
-  
+
   .controller('ContactFindCtrl', function ($scope, $ionicLoading, $state, $rootScope, CONFIG, apiManager, $stateParams, $ionicNavBarDelegate) {
     $scope.data = null;
     $scope.country = null;
@@ -250,7 +250,7 @@ angular.module('starter.controllers', [])
       } else if (!$scope.recoverData.repeat || $scope.recoverData.repeat == null) {
         ionicToast.show('Repeat password can not be left blank.', 'middle', false, 1500);
       } else if ($scope.recoverData.new && !$scope.passwordValidator.test($scope.recoverData.new)) {
-        ionicToast.show('Passwords should be 6-12 characters long.', 'middle', false, 1500);
+        ionicToast.show('Passwords should be 5-12 characters long.', 'middle', false, 1500);
       } else if ($scope.recoverData.new && $scope.recoverData.new !== $scope.recoverData.repeat) {
         ionicToast.show('Repeat password did not patch to new password.', 'middle', false, 1500);
       } else {
@@ -293,7 +293,7 @@ angular.module('starter.controllers', [])
       } else if (!$scope.formData.password || $scope.formData.password === null) {
         ionicToast.show('Password can not be left blank.', 'middle', false, 1500);
       } else if ($scope.formData.password && !$scope.passwordValidator.test($scope.formData.password)) {
-        ionicToast.show('Passwords should be 6-12 characters long.', 'middle', false, 1500);
+        ionicToast.show('Passwords should be 5-12 characters long.', 'middle', false, 1500);
       } else {
         if ($scope.formData.email && $scope.formData.password) {
           $ionicLoading.show();
@@ -794,6 +794,64 @@ angular.module('starter.controllers', [])
     });
   })
 
+  .controller('AmcCtrl', function ($scope, $localStorage, $rootScope, $state, $ionicLoading, apiManager, ionicToast) {
+    $scope.amcData = {};
+    $scope.user = $localStorage.getUser();
+    $ionicLoading.show();
+    var url = "getAmcDAta?email=" + $scope.user.email;
+    apiManager.customGet(url).then(function (resp) {
+      $ionicLoading.hide();
+      $scope.amcData = resp.data;
+    });
+
+    $scope.payNow = function () {
+      $ionicLoading.show();
+      var data = {};
+      data.firstname = $scope.user.first_name;
+      data.email = $scope.user.email;
+      data.phone = $scope.user.phone;
+      data.amount = $scope.amcData.drTtotal - $scope.amcData.crTtotal;
+      //"firstname", "email", "phone", "amount"
+      apiManager.createOrder(data).then(function (resp) {
+        $ionicLoading.hide();
+        if (!resp.error) {
+          onDeviceReadyTest(resp.data.txnid);
+        } else {
+          ionicToast.show('Some error occured please try again later.', 'middle', false, 2000);
+        }
+      });
+    };
+  })
+
+  .controller('MembershipFeeCtrl', function ($scope, $localStorage, $rootScope, $state, $ionicLoading, apiManager, ionicToast) {
+    $scope.amcData = {};
+    $scope.user = $localStorage.getUser();
+    $ionicLoading.show();
+    var url = "getMembershipData?email=" + $scope.user.email;
+    apiManager.customGet(url).then(function (resp) {
+      $ionicLoading.hide();
+      $scope.amcData = resp.data;
+    });
+
+    $scope.payNow = function () {
+      $ionicLoading.show();
+      var data = {};
+      data.firstname = $scope.user.first_name;
+      data.email = $scope.user.email;
+      data.phone = $scope.user.phone;
+      data.amount = $scope.amcData.drTtotal - $scope.amcData.crTtotal;
+      //"firstname", "email", "phone", "amount"
+      apiManager.createOrder(data).then(function (resp) {
+        $ionicLoading.hide();
+        if (!resp.error) {
+          onDeviceReadyTest(resp.data.txnid);
+        } else {
+          ionicToast.show('Some error occured please try again later.', 'middle', false, 2000);
+        }
+      });
+    };
+  })
+
   .controller('HolidaysCtrl', function ($scope, $localStorage, $rootScope, $state, $ionicLoading, apiManager) {
     $scope.profileData = {};
     $scope.user = $localStorage.getUser();
@@ -804,6 +862,90 @@ angular.module('starter.controllers', [])
         $scope.profileData = resp.data;
       }
     });
+  })
+
+  .controller('RedeemCtrl', function ($scope, $localStorage, $rootScope, $state, $ionicLoading, apiManager, ionicToast) {
+    $scope.profileData = {};
+    $scope.redeemUser = null;
+    $scope.data = {};
+    $scope.user = $localStorage.getUser();
+    if ($rootScope.redeemUser && $rootScope.redeemUser !== null) {
+      $scope.redeemUser = $rootScope.redeemUser;
+    }
+    $scope.getVoucher = function () {
+      if (!$scope.data.voucherCode || $scope.data.voucherCode == null) {
+        ionicToast.show('Please enter coucher code', 'middle', false, 1500);
+      } else {
+        $ionicLoading.show();
+        var url = "getVoucherDetails?voucher_no=" + $scope.data.voucherCode;
+        apiManager.customGet(url).then(function (resp) {
+          $ionicLoading.hide();
+          if (resp.data && resp.data.voucher && resp.data.voucher !== null) {
+            $rootScope.redeemUser = resp.data.voucher;
+            $scope.redeemUser = resp.data.voucher;
+          } else {
+            ionicToast.show('This voucher code is not valid', 'middle', false, 1500);
+          }
+        }).error(function (resp){
+          ionicToast.show('This voucher code is not valid', 'middle', false, 1500);
+        });
+      }
+    };
+    $scope.goToNextSlide = function () {
+      if (!$scope.data.selectedLocation || $scope.data.selectedLocation == null) {
+        ionicToast.show('Please select Location', 'middle', false, 1500);
+      } else {
+        $state.go('app.redeem2', {location: $scope.data.selectedLocation.id, voucher:$scope.data.voucherCode});
+      }
+    };
+  })
+  
+  .controller('Redeem2Ctrl', function ($scope, $localStorage, $stateParams, $state, $ionicLoading, apiManager, ionicToast, $ionicNavBarDelegate, CONFIG) {
+    $scope.location = $stateParams.location
+    $scope.data = {};
+    $scope.imageUrl = CONFIG.imageUrl2;
+    $scope.redeemUser = null
+    $ionicNavBarDelegate.showBackButton(true);
+    $scope.user = $localStorage.getUser();
+    $ionicLoading.show();
+    var url = "getVoucherDetails?voucher_no=" + $stateParams.voucher;
+    apiManager.customGet(url).then(function (resp) {
+      $ionicLoading.hide();
+      $scope.redeemUser = resp.data.voucher;
+    });
+    var url = "getCityPackageList2?location=" + $scope.location;
+    apiManager.customGet(url).then(function (resp) {
+      $ionicLoading.hide();
+      $scope.data.response = resp;
+    });
+
+    $scope.saveBooking = function () {
+      if (!$scope.data.selected_date || $scope.data.selected_date == null) {
+        ionicToast.show('Please select check in date.', 'middle', false, 2000);
+      } else {
+        $ionicLoading.show();
+        var request = {
+          firstname: $scope.redeemUser.name.split(' ')[0],
+          email: $scope.redeemUser.email,
+          phone: $scope.redeemUser.phoneno,
+          amount: 3000,
+          status: "",
+          nid: $stateParams.voucher,
+          voucherCode: $stateParams.voucher,
+          check_id: $scope.data.selected_date.start_date,
+          check_out: $scope.data.selected_date.end_date,
+          city: $scope.location
+        };
+        apiManager.createOrder(request).then(function (resp) {
+          $ionicLoading.hide();
+          if (!resp.error) {
+            onDeviceReadyTest(resp.data.txnid);
+          } else {
+            ionicToast.show('Some error occured please try again later.', 'middle', false, 2000);
+          }
+        });
+      }
+    };
   })
 
   .controller('CmsCtrl', function ($scope, $stateParams, $rootScope, CONFIG, $ionicLoading, apiManager) {
@@ -940,15 +1082,15 @@ angular.module('starter.controllers', [])
       if (!$scope.profileData.old_password || $scope.profileData.old_password === null) {
         ionicToast.show('Password can not be left blank.', 'middle', false, 1500);
       } else if ($scope.profileData.old_password && !$scope.passwordValidator.test($scope.old_password.password)) {
-        ionicToast.show('Passwords should be 6-12 characters long.', 'middle', false, 1500);
+        ionicToast.show('Passwords should be 5-12 characters long.', 'middle', false, 1500);
       } else if (!$scope.profileData.new_password || $scope.profileData.new_password === null) {
         ionicToast.show('Password can not be left blank.', 'middle', false, 1500);
       } else if ($scope.profileData.new_password && !$scope.passwordValidator.test($scope.profileData.new_password)) {
-        ionicToast.show('Passwords should be 6-12 characters long.', 'middle', false, 1500);
+        ionicToast.show('Passwords should be 5-12 characters long.', 'middle', false, 1500);
       } else if (!$scope.profileData.repeat_password || $scope.profileData.repeat_password === null) {
         ionicToast.show('Password can not be left blank.', 'middle', false, 1500);
       } else if ($scope.profileData.repeat_password && !$scope.passwordValidator.test($scope.profileData.repeat_password)) {
-        ionicToast.show('Passwords should be 6-12 characters long.', 'middle', false, 1500);
+        ionicToast.show('Passwords should be 5-12 characters long.', 'middle', false, 1500);
       } else if ($scope.profileData.new_password !== $scope.profileData.repeat_password) {
         ionicToast.show('Confirm password did not match.', 'middle', false, 1500);
       } else {
@@ -1058,9 +1200,10 @@ angular.module('starter.controllers', [])
     });
   })
 
-  .controller('PaymentCallbackCtrl', function ($scope, $ionicNavBarDelegate, apiManager, $stateParams) {
+  .controller('PaymentCallbackCtrl', function ($scope, $ionicNavBarDelegate, apiManager, $stateParams, $rootScope) {
     // Activate ink for controller
     $scope.txnData = null;
+    $rootScope.redeemUser = null;
     $ionicNavBarDelegate.showBackButton(false);
     apiManager.getTxnDetails($stateParams.txnId).then(function (resp) {
       if (!resp.error) {

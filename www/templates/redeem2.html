@@ -1,0 +1,43 @@
+<ion-view view-title="Redeem Voucher">
+  <ion-content>
+    <form class="gem-form" style="margin-top: 0px;">
+      <div class="list1" ng-if="!data.response || data.response == null || data.response.itenary_package == null">
+        <div class="item-" style="margin-top: 30px; padding: 15px;color: rgba(255, 0, 0, 0.82);background: #fff;">
+          <div class="item-head"> No details found, Please go back and select another location.</div>
+        </div>
+      </div>
+      <div class="list" ng-if="data.response && data.response !== null && data.response.itenary_package !== null">
+        <div class="card card_2" style="padding: 10px;" ng-repeat="holiday in data.response.itenary_package">
+          <b>{{holiday.title}}</b>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            <div class="item item-image" style="background-color: #ccc; background: url({{imageUrl}}{{holiday.image}}) no-repeat; height: 240px; background-size: cover;"></div>
+          </div>
+          <div ng-bind-html="holiday.text" style="padding-top:10px; padding-bottom:10px;">
+          </div>
+          <div class="profile-separator-title"><i class="ion-gear-a"></i> Select Date</div>           
+          <div style="padding-top:10px; padding-bottom:10px;">
+            <select ng-model="data.selected_date" ng-options="date.start_date + ' to ' + date.end_date for date in holiday.date_available track by date.date_id">
+            </select>
+          </div>
+          <div ng-if="data.selected_date">
+            <div style="padding-top:10px; padding-bottom:10px;">
+              Check in: {{data.selected_date.start_date}}
+            </div>
+            <div style="padding-top:10px; padding-bottom:10px;">
+              Check out: {{data.selected_date.end_date}}
+            </div>
+          </div>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            City: {{holiday.package_id}}
+          </div>
+          <div style="padding-top:10px; padding-bottom:10px;">
+            Resort: {{holiday.title}}
+          </div>
+        </div>
+        <label class="item">
+          <button class="button button-block button-positive " type="button" ng-click="saveBooking()">Proceed</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

@@ -5,11 +5,17 @@
         <div id="content">
           <div id="profile-info">
             <img id="profile-image" src="img/images111.jpg">
-            <h3 id="profile-name">{{profileData.member_name}}</h3>
-            <span id="profile-description">{{profileData.membership_id}}
-              <br>
-              {{profileData.phone_no}}
-            </span>
+            <div>
+              <span id="profile-description">
+                <h3 id="profile-name">{{profileData.member_name}}</h3>
+                <br>
+                <div style="text-align: left; width: 100%; float: left;">
+                {{profileData.membership_id}}
+                <br>
+                {{profileData.phone_no}}
+                </div>
+              </span>  
+            </div>
           </div>
         </div>
 
@@ -30,7 +36,8 @@
         </div>
         <div class="item">
           <div class="item-head">Membership Tenure</div>
-          <div class="item-text" ng-bind-html="profileData.package_detail"></div>
+          <div class="item-text" style="clear: both;
+    float: left;" ng-bind-html="profileData.package_detail"></div>
         </div>
         <div class="item">
           <div class="item-head">Membership Date</div>
@@ -41,9 +48,9 @@
           <div style="float:left;">
             <img src="img/web_hi_res_512.png" style="width:100px; float: left;"/>          
           </div>
-          <div style="float:left; margin-top: 20px;">
-            <div class="item-head"><b>{{profileData.spouse_name}}</b>
-              <br><div>Marriage Date: {{profileData.anniversary}}</div>
+          <div style="float:left; margin-top: 20px;max-width: 200px;">
+            <div class="item-head" style="max-width: 200px;"><b>{{profileData.spouse_name}}</b>
+              <br><div>Marriage Date: <br>{{profileData.anniversary}}</div>
             </div>             
           </div>
         </div>
@@ -56,9 +63,8 @@
           <div class="item-head">Second Child Name</div>
           <div class="item-text">{{profileData.childrensec}}</div>
         </div>
-        <div class="profile-separator-title"><i class="ion-person"></i> Address</div> 
-
-        <div class="item">
+        <div class="profile-separator-title"><i class="ion-person"></i> Address</div>
+        <div class="item-" style="padding: 15px;color: #000;background: #fff;">
           <div class="item-head" ng-bind-html="profileData.address"></div>
         </div>
 

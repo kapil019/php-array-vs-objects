@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.travel.kk" version="1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.travel.kk" version="2.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Country Holidays</name>
     <description>
     Country Holidays Inn and Suites Travel Booking Mobile App
@@ -8,7 +8,8 @@
     Kapil Chauhan
   </author>
     <content src="index.html" />
-    <access origin="*" />
+    <access launch-external="yes" origin="*" />
+    <allow-navigation href="*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -20,9 +21,15 @@
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
-    <icon src="resources/icon.png" />
-    <splash src="resources/chis.png" />
-    <allow-navigation href="http://10.0.21.112:8100" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <icon src="resources/web_hi_res_512.png" />
+    <splash src="resources/image2.png" />
     <engine name="android" spec="^6.2.3" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
     <plugin name="cordova-plugin-network-information" spec="^1.3.3" />
 </widget>

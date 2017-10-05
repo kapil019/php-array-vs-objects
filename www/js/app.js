@@ -336,6 +336,42 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           }
         }
       })
+      .state('app.amc', {
+        url: '/amc',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/amc.html',
+            controller: 'AmcCtrl'
+          }
+        }
+      })
+      .state('app.redeem', {
+        url: '/redeem',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/redeem.html',
+            controller: 'RedeemCtrl'
+          }
+        }
+      })
+      .state('app.redeem2', {
+        url: '/redeem2/:location/:voucher',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/redeem2.html',
+            controller: 'Redeem2Ctrl'
+          }
+        }
+      })
+      .state('app.membership-fee', {
+        url: '/membership-fee',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/membership-fee.html',
+            controller: 'MembershipFeeCtrl'
+          }
+        }
+      })
       .state('app.holidays', {
         url: '/holidays',
         views: {
@@ -359,19 +395,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   };
 });
 
-var appUrl = 'http://www.countryholidaysinnsuites.com/rest/api/v1/index.php/';
-if (window.location.host === "demo.incaendo.com") {
+var appUrl = 'https://www.countryholidaysinnsuites.com/rest/api/v1/index.php/';
+if (window.location.host === "demo.incaendo.com1") {
   appUrl = 'http://demo.incaendo.com/kapil/country-holiday/api/rest/api/src/v1/';
 }
 /*global define */
 angular.module('starter.config', [])
   .constant('CONFIG', {
-    imageUrl: 'http://www.countryholidaysinnsuites.com/admin/upload/',
+    imageUrl: 'https://www.countryholidaysinnsuites.com/admin/upload/',
+    imageUrl2: 'https://www.countryholidaysinnsuites.com/voucher/admin/upload/',
     apiKey: '341542grfyt345325326',
     apiUrl: appUrl,
     validators: {
       email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      password: /^.{6,12}$/,
+      password: /^.{5,12}$/,
       phone: /^[7-9][0-9]{9}$/
     },
     days: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
